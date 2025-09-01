@@ -5,3 +5,12 @@
   --primary-font-family: "Montserrat", sans-serif;
   --secondary-font-family: "Plus Jakarta Sans", sans-serif;
 }
+/* start header */
+.promotion {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+.promotion a {
+  color: #ffffff;
+}
+/* end header  */
