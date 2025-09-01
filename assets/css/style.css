@@ -13,6 +13,9 @@
 .promotion a {
   color: #ffffff;
 }
+.promotion-text {
+  font-size: 1rem;
+}
 .logo {
   font-size: 24px;
   font-weight: bolder;
@@ -88,6 +91,9 @@
   .overlay-text p {
     font-size: 14px;
   }
+  .promotion-text {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -99,6 +105,9 @@
   }
   .overlay-text p {
     font-size: 12px;
+  }
+  .promotion-text {
+    font-size: 0.7rem;
   }
 }
 
@@ -122,7 +131,6 @@
 .hero {
   background-image: url("../images/hero.png");
   background-size: cover;
-  background-position: center;
   height: calc(100vh - 98px);
   display: flex;
   align-items: center;
@@ -161,8 +169,9 @@
   }
 }
 
-.statics:first-of-type {
-  border-left: none;
+.special-statistics {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 767px) {
   .hero {
@@ -217,3 +226,4 @@
   width: 150px;
   margin: 0 40px;
 }
+/* end trademark section  */
