@@ -78,7 +78,6 @@
   }
   .nav-links {
     top: 100%;
-    padding: 20px calc((100vw - 540px) / 2);
   }
 }
 
