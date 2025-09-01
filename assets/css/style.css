@@ -5,3 +5,225 @@
   --primary-font-family: "Montserrat", sans-serif;
   --secondary-font-family: "Plus Jakarta Sans", sans-serif;
 }
+/* start header */
+.promotion {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+.promotion a {
+  color: #ffffff;
+}
+.promotion-text {
+  font-size: 1rem;
+}
+.logo {
+  font-size: 24px;
+  font-weight: bolder;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.menu {
+  color: var(--primary-color);
+}
+.search-bar-container {
+  width: 300px !important;
+}
+.search-bar {
+  background-color: var(--secondary-color) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+  max-width: 100%;
+}
+.icons i {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.header.open {
+  background-color: var(--primary-color);
+}
+
+.header.open .logo,
+.header.open .menu,
+.header.open .icons i {
+  color: #ffffff;
+}
+.navbar {
+  position: relative !important;
+}
+.nav-links {
+  display: none;
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  background-color: var(--primary-color);
+  z-index: 1000;
+  padding: 20px calc((100vw - 960px) / 2);
+  transition: all 0.3s ease-in-out;
+}
+
+.header.open .nav-links {
+  display: block;
+}
+
+.nav-links li a {
+  color: #ffffff !important;
+  font-size: 20px;
+  line-height: 2;
+}
+
+@media (max-width: 767px) {
+  .search-bar,
+  .search-bar-container {
+    display: none !important;
+  }
+  .nav-links {
+    top: 100%;
+  }
+  .overlay-text {
+    width: 80%;
+  }
+  .overlay-text h1 {
+    font-size: 36px;
+  }
+  .overlay-text p {
+    font-size: 14px;
+  }
+  .promotion-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .overlay-text {
+    width: 90%;
+  }
+  .overlay-text h1 {
+    font-size: 28px;
+  }
+  .overlay-text p {
+    font-size: 12px;
+  }
+  .promotion-text {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    background-color: transparent;
+    padding: 0;
+    width: auto;
+    transform: none;
+  }
+  .nav-links li a {
+    color: var(--primary-color) !important;
+    font-size: 16px;
+  }
+}
+
+/* end header  */
+/* start hero section  */
+.hero {
+  background-image: url("../images/hero.png");
+  background-size: cover;
+  height: calc(100vh - 98px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.hero p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.overlay-text {
+  width: 50%;
+  color: var(--primary-color);
+  text-align: left;
+}
+.overlay-text h1 {
+  font-weight: bold;
+}
+.overlay-text p {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: var(--primary-font-family);
+  font-size: 15px;
+  line-height: 1.1;
+}
+.overlay-text .btn {
+  background-color: var(--primary-color) !important;
+  border-color: black;
+  &:hover {
+    border-color: black;
+    outline-color: black;
+  }
+}
+
+.special-statistics {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 767px) {
+  .hero {
+    /* height: auto; */
+    padding: 20px 0;
+    background-image: none;
+    background-color: var(--secondary-color);
+  }
+  .overlay-text {
+    text-align: center;
+    width: 100%;
+  }
+  .overlay-text h1 {
+    font-size: 25px;
+  }
+  .overlay-text > p {
+    font-size: 14px;
+    margin: 15px 0 30px !important;
+  }
+  .overlay-text .btn {
+    margin-bottom: 20px;
+  }
+}
+
+/* start trademark section */
+.trademark {
+  background-color: var(--primary-color);
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.trademark-slider {
+  width: 100%;
+}
+
+.trademark-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  width: calc(200px * 10);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-200px * 5));
+  }
+}
+
+.trademark-track img {
+  width: 150px;
+  margin: 0 40px;
+}
+/* end trademark section  */
