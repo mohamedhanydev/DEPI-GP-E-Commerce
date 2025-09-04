@@ -285,6 +285,99 @@
 
 /* end dress card section */
 
+
+/* start in top selling section */
+
+ .top-selling {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .top-selling h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .product-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+      max-width: 250px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .rating {
+      color: gold;
+      font-size: 14px;
+    }
+
+    .price {
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: gray;
+      margin-left: 8px;
+      font-size: 14px;
+    }
+
+    .discount {
+      color: red;
+      font-size: 13px;
+      margin-left: 5px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .product-flex {
+        justify-content: center;
+      }
+      .card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 100%;
+      }
+    }
+
+    /* end of topSelling section */
+
+
+
+
+
 /* start reviews section */
 
 .custom-arrow {
