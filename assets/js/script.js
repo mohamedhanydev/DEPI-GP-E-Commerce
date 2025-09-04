@@ -8,3 +8,8 @@ closePromotionBtn.addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector(".promotion").remove();
 });
+
+
+
+
+

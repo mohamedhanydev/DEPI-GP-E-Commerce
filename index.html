@@ -33,6 +33,11 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   </head>
   <body>
     <header class="header">
@@ -159,8 +164,116 @@
     </section>
     <section class="new-arrivals"></section>
     <section class="top-selling"></section>
-    <section class="dress-style"></section>
-    <section class="reviews"></section>
+
+
+    <!-- start dress-style -->
+<section class="dress-style-section py-5 text-center">
+  <div class="container mb-4 rounded-5 p-4">
+    <h2 class="fw-bold mb-5 mt-3">BROWSE BY DRESS STYLE</h2>
+
+    <div class="row g-3">
+      <!-- Casual -->
+      <div class="col-12 col-md-5">
+        <a href="#" class="dress-card d-block">
+          <img src="assets/images/casual.png" alt="Casual" class="img-fluid rounded-3">
+          <span>Casual</span>
+        </a>
+      </div>
+
+      <!-- Formal -->
+      <div class="col-12 col-md-7">
+        <a href="#" class="dress-card d-block">
+          <img src="assets/images/formal.png" alt="Formal" class="img-fluid rounded-3">
+          <span>Formal</span>
+        </a>
+      </div>
+
+      <!-- Party -->
+      <div class="col-12 col-md-7">
+        <a href="#" class="dress-card d-block">
+          <img src="assets/images/party.png" alt="Party" class="img-fluid rounded-3">
+          <span>Party</span>
+        </a>
+      </div>
+
+      <!-- Gym -->
+      <div class="col-12 col-md-5">
+        <a href="#" class="dress-card d-block">
+          <img src="assets/images/gym.png" alt="Gym" class="img-fluid rounded-3">
+          <span>Gym</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- end dress-style -->
+     
+    
+
+    <!-- start reviews section -->
+<section class="reviews py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+      <h2 class="fw-bold m-0">OUR HAPPY CUSTOMERS</h2>
+      <div>
+        <button class="custom-arrow me-2" id="prevBtn"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="custom-arrow" id="nextBtn"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="reviews-wrapper row g-3 overflow-hidden">
+      <!-- Review 1 -->
+      <div class="col-md-4">
+        <div class="review-card card shadow-sm p-4 border-0 h-100">
+          <div class="stars text-warning mb-2">★★★★★</div>
+          <h6 class="fw-bold mb-1">
+            Sarah M. <span class="check-circle"><i class="fa-solid fa-check"></i></span>
+          </h6>
+          <p class="text-muted">
+            "I’m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I’ve bought has exceeded my expectations."
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="col-md-4">
+        <div class="review-card card shadow-sm p-4 border-0 h-100">
+          <div class="stars text-warning mb-2">★★★★★</div>
+          <h6 class="fw-bold mb-1">
+            Alex K. <span class="check-circle"><i class="fa-solid fa-check"></i></span>
+          </h6>
+          <p class="text-muted">
+            "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable."
+          </p>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="col-md-4">
+        <div class="review-card card shadow-sm p-4 border-0 h-100">
+          <div class="stars text-warning mb-2">★★★★★</div>
+          <h6 class="fw-bold mb-1">
+            James L. <span class="check-circle"><i class="fa-solid fa-check"></i></span>
+          </h6>
+          <p class="text-muted">
+            "As someone who’s always on the lookout for unique fashion pieces, I’m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end reviews section -->
+
+
+      
+   
+
+
+
+
+
     <footer>
       <p>&copy; 2025 SHOP.CO. All rights reserved.</p>
     </footer>
@@ -172,5 +285,6 @@
     ></script>
     <!-- main js file -->
     <script src="assets/js/script.js"></script>
+   
   </body>
 </html>
