@@ -28,8 +28,36 @@ body {
 
 .hero-text {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #000;
+  transition: color 0.3s ease;
 }
+
+/* start in featured collection section */
+
+.main-section-text {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 60px 0px;
+}
+
+.main-section-text h3 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #19749f;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: bold;
+}
+.offer {
+  color: #777;
+}
+
+/* end of featured collection section*/
 
 .btn-primary {
   background-color: var(--btn-color);
