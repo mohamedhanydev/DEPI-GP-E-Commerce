@@ -14,7 +14,6 @@ body {
 .hero-slider .swiper-slide {
   display: flex;
   align-items: center;
-  height: 500px;
 }
 
 .hero-content {
@@ -31,16 +30,34 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.hero-image-container {
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero-image-container img {
+  display: block;
+  margin: auto;
+  height: 100%;
+}
+
 .btn-primary {
   background-color: var(--btn-color);
   border-color: var(--btn-color);
 }
-
+.swiper {
+  height: 100%;
+}
+.swiper-wrapper {
+  height: 100%;
+  align-items: center;
+}
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #ccc;
   opacity: 1;
+  bottom: 30px;
 }
 
 .swiper-pagination-bullet-active {
@@ -64,6 +81,17 @@ body {
   font-weight: bold;
 }
 
+.card {
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 .card-text {
   color: #19749f;
   font-size: 18px;
@@ -78,4 +106,96 @@ body {
 
 .hero {
   background-color: var(--background-color);
+}
+
+@media (max-width: 992px) {
+  .hero .row .col-lg-6:first-child {
+    order: 2;
+  }
+
+  .hero .row .col-lg-6:last-child {
+    order: 1;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 0.9rem;
+  }
+
+  .hero-image-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-header .container {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .top-header-left a span,
+  .top-header-right .links {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .hero-image-container {
+    height: 200px;
+  }
+
+  .main-section-text h3 {
+    font-size: 24px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-collapse.show .more-details {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 0.9rem;
+  }
+
+  .hero-image-container {
+    height: 200px;
+  }
+
+  .main-section-text h3 {
+    font-size: 20px;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
 }

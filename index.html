@@ -44,7 +44,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="main-header">
       <div class="top-header bg-dark py-2 text-white">
         <div
           class="container d-flex justify-content-between align-items-center"
@@ -53,11 +53,12 @@
             <a
               href="mailto:info@depigp.com"
               class="text-white text-decoration-none"
-              ><i class="fa-solid fa-envelope"></i> info@depigp.com</a
+              ><i class="fa-solid fa-envelope"></i>
+              <span>info@depigp.com</span></a
             >
             <a href="#" class="text-white text-decoration-none"
-              ><i class="fa-solid fa-location-dot"></i> 123 Main St, Anytown,
-              USA</a
+              ><i class="fa-solid fa-location-dot"></i>
+              <span>123 Main St, Anytown, USA</span></a
             >
           </div>
           <div class="top-header-right d-flex gap-3">
@@ -130,35 +131,37 @@
                 <a class="nav-link" href="#">Contact</a>
               </li>
             </ul>
-          </div>
-          <div class="more-details d-flex align-items-center">
-            <div class="dropdown">
-              <button
-                type="button"
-                class="btn nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
+            <div class="more-details d-flex align-items-center">
+              <div class="dropdown">
+                <button
+                  type="button"
+                  class="btn nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                >
+                  USD
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">EUR</a></li>
+                  <li><a class="dropdown-item active" href="#">USD</a></li>
+                  <li><a class="dropdown-item" href="#">GBP</a></li>
+                </ul>
+              </div>
+              <a href="#" class="text-dark mx-2 hide-on-collapse"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></a>
+              <a href="#" class="text-dark mx-2 hide-on-collapse"
+                ><i class="fa-regular fa-user"></i
+              ></a>
+              <a
+                href="#"
+                class="text-dark mx-2 position-relative hide-on-collapse"
+                ><i class="fa-solid fa-bag-shopping"></i
+                ><span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >3</span
+                ></a
               >
-                USD
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">EUR</a></li>
-                <li><a class="dropdown-item active" href="#">USD</a></li>
-                <li><a class="dropdown-item" href="#">GBP</a></li>
-              </ul>
             </div>
-            <a href="#" class="text-dark mx-2"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></a>
-            <a href="#" class="text-dark mx-2"
-              ><i class="fa-regular fa-user"></i
-            ></a>
-            <a href="#" class="text-dark mx-2 position-relative"
-              ><i class="fa-solid fa-bag-shopping"></i
-              ><span
-                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                >3</span
-              ></a
-            >
           </div>
         </div>
       </nav>
@@ -180,9 +183,9 @@
                     <a href="#" class="btn btn-primary">Shop Now</a>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 hero-image-container">
                   <img
-                    src="assets/images/banner__1.png"
+                    src="assets/images/banner__4.png"
                     alt="Modern Collection"
                     class="img-fluid"
                   />
@@ -203,9 +206,9 @@
                     <a href="#" class="btn btn-primary">Shop Now</a>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 hero-image-container">
                   <img
-                    src="assets/images/banner__2.png"
+                    src="assets/images/banner__5.jpeg"
                     alt="Summer Vibes"
                     class="img-fluid"
                   />
@@ -226,9 +229,9 @@
                     <a href="#" class="btn btn-primary">Shop Now</a>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 hero-image-container">
                   <img
-                    src="assets/images/banner__3.png"
+                    src="assets/images/banner__4.png"
                     alt="New Arrivals"
                     class="img-fluid"
                   />
@@ -242,78 +245,77 @@
       </div>
     </section>
     <!-- start of featured collection section -->
+    <section class="featured">
+      <div class="container">
+        <div class="row">
+          <div class="main-section-text">
+            <h3>Featured Collection</h3>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="col">
+              <div class="card">
+                <img
+                  src="assets/images/grid__1.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">W. Men Formal T-shirt</h5>
+                  <p class="card-text text-center">
+                    <del class="offer">$72.00</del> $47.00
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img
+                  src="assets/images/grid__2.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">B. Pair Of Blue Shoes</h5>
+                  <p class="card-text text-center">$47.00</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img
+                  src="assets/images/grid__6.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">F. Ultmate Smart Watch</h5>
+                  <p class="card-text text-center">$47.00</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img
+                  src="assets/images/grid__4.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">S. Mokmol Jacket</h5>
+                  <p class="card-text text-center">
+                    <del class="offer">$72.00</del> $47.00
+                  </p>
+                </div>
+              </div>
+            </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="main-section-text">
-          <h3>Featured Collection</h3>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-          <div class="col">
-            <div class="card">
-              <img
-                src="assets/images/grid__1.png"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">W. Men Formal T-shirt</h5>
-                <p class="card-text text-center">
-                  <del class="offer">$72.00</del> $47.00
-                </p>
-              </div>
-            </div>
+            <a class="btn btn-primary mx-auto" href="index.html" role="button"
+              >veiw All</a
+            >
           </div>
-          <div class="col">
-            <div class="card">
-              <img
-                src="assets/images/grid__2.png"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">B. Pair Of Blue Shoes</h5>
-                <p class="card-text text-center">$47.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img
-                src="assets/images/grid__6.png"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">F. Ultmate Smart Watch</h5>
-                <p class="card-text text-center">$47.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img
-                src="assets/images/grid__4.png"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">S. Mokmol Jacket</h5>
-                <p class="card-text text-center">
-                  <del class="offer">$72.00</del> $47.00
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <a class="btn btn-primary mx-auto" href="index.html" role="button"
-            >veiw All</a
-          >
         </div>
       </div>
-    </div>
-
+    </section>
     <!-- end of featured collection section -->
 
     <!-- bootstrap js file -->
