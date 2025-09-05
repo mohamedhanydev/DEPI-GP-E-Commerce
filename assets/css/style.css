@@ -28,6 +28,23 @@ body {
 
 .hero-text {
   font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  background-color: var(--btn-color);
+  border-color: var(--btn-color);
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--primary-color);
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   color: #000;
@@ -59,21 +76,6 @@ body {
 
 /* end of featured collection section*/
 
-.btn-primary {
-  background-color: var(--btn-color);
-  border-color: var(--btn-color);
-}
-
-.swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #ccc;
-  opacity: 1;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: var(--primary-color);
-}
 .hero {
   background-color: var(--background-color);
 }
