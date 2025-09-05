@@ -288,18 +288,69 @@
 
 /* start in featured collection section */
 
- .main-section-text {
+ /* .main-section-text {
       text-align: center;
       margin-bottom: 40px;
       padding: 60px 0px;
-    }
+    } */
 
     .main-section-text h3 {
+      padding: 20px;
+       text-align: center;
       font-size: 28px;
       font-weight: bold;
     
+    } 
+    .card{
+      position: relative;
+      /* width: 250px; */
+      text-align: center;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) ;
+    }
+    /* .card img{
+      width: 100%;
+      border-radius: 8px;
+    } */
+
+    .badge-new{
+      position: absolute;
+      top: 10px;
+      left:10px;
+      background: #000;
+      color: #fff;
+      padding: 12px;
+      font-size: 12px;
+      border-radius: 6px;
+    }
+    .badge-dicount{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background:#ff3b3b ;
+      color: #fff;
+      font-size: 12px;
+      padding: 12px;
+      border-radius: 6px;
     }
 
+    .countdown{
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      border-radius: 8px;
+      padding: 6px 12px;
+      display: flex;
+      gap: 8px;
+      font-size: 16px;
+      width: 80%;
+      
+    }
+   
     .card-text{
       color: #19749f;
       font-size: 18px;
@@ -322,6 +373,7 @@
 /* start reviews section */
 
 .custom-arrow {
+  /* position: absolute; */
   border: none;
   outline: none;
   background: none;
