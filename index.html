@@ -8,15 +8,15 @@
       content="Discover the latest fashion trends and shop a wide selection of clothing, shoes, and accessories at DEPI-GP E-Commerce. Enjoy quality products, great deals, and fast shipping."
     />
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png" />
-    <title>SHOP.CO</title>
-    
+    <title>Minimalist</title>
+
     <!-- main css file -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- main fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap"
       rel="stylesheet"
     />
     <!-- font-awesome library -->
@@ -35,367 +35,213 @@
       crossorigin="anonymous"
     />
     <!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
 
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   </head>
   <body>
     <header class="header">
-      <div
-        class="promotion text-center pt-2 pb-2 d-flex justify-content-between align-items-center"
-      >
-        <span class="mx-auto promotion-text">
-          Sign up and get 20% off to your first order.
-          <a href="#">Sign Up Now</a>
-        </span>
-        <a href="#" class="me-3 close-promotion"
-          ><i class="fa-solid fa-xmark"></i
-        ></a>
-      </div>
-
-      <div class="container">
-        <nav class="navbar d-flex align-items-center justify-content-between">
-          <div
-            class="logo-container d-flex justify-content-center align-items-center gap-2"
-          >
-            <a href="#" class="menu d-lg-none d-md-none"
-              ><i class="fa-solid fa-bars"></i
-            ></a>
-            <a href="#" class="logo">SHOP.CO</a>
+      <div class="top-header bg-dark py-2 text-white">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <div class="top-header-left d-flex gap-2">
+            <a
+              href="mailto:info@depigp.com"
+              class="text-white text-decoration-none"
+              ><i class="fa-solid fa-envelope"></i> info@depigp.com</a
+            >
+            <a href="#" class="text-white text-decoration-none"
+              ><i class="fa-solid fa-location-dot"></i> 123 Main St, Anytown,
+              USA</a
+            >
           </div>
-          <ul class="nav-links list-unstyled mb-0">
-            <div class="container d-flex flex-lg-row flex-column gap-2">
-              <li>
-                <a href="#" class="px-2 text-decoration-none text-black"
-                  >Shop</a
-                >
-              </li>
-              <li>
-                <a href="#" class="px-2 text-decoration-none text-black"
-                  >On Sale</a
-                >
-              </li>
-              <li>
-                <a href="#" class="px-2 text-decoration-none text-black"
-                  >New Arrivals</a
-                >
-              </li>
-              <li>
-                <a href="#" class="px-2 text-decoration-none text-black"
-                  >Brands</a
-                >
-              </li>
+          <div class="top-header-right d-flex gap-3">
+            <div class="dropdown">
+              <button
+                type="button"
+                class="btn nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                English
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Arabic</a></li>
+                <li><a class="dropdown-item active" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">French</a></li>
+              </ul>
             </div>
-          </ul>
-          <div class="position-relative search-bar-container">
-            <input
-              type="text"
-              class="form-control ps-5 rounded-pill search-bar"
-              placeholder="Search..."
-            />
-            <i
-              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
-            ></i>
+            <div class="links">
+              <a href="#" class="text-white"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="fa-brands fa-twitter"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+            </div>
           </div>
-          <div class="icons d-flex gap-3">
-            <a href="#">
-              <i
-                class="fa-solid fa-magnifying-glass fs-6 fs-md-5 fs-lg-4 d-lg-none d-md-none"
-              ></i>
-            </a>
-            <a href="#">
-              <i class="fa-solid fa-cart-shopping fs-6 fs-md-5 fs-lg-4"></i>
-            </a>
-            <a href="#">
-              <i class="fa-solid fa-user fs-6 fs-md-5 fs-lg-4"></i>
-            </a>
-          </div>
-        </nav>
+        </div>
       </div>
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img
+              src="assets/images/logo__1.png"
+              alt="DEPI-GP Logo"
+              class="img-fluid"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="more-details d-flex align-items-center">
+            <div class="dropdown">
+              <button
+                type="button"
+                class="btn nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                USD
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">EUR</a></li>
+                <li><a class="dropdown-item active" href="#">USD</a></li>
+                <li><a class="dropdown-item" href="#">GBP</a></li>
+              </ul>
+            </div>
+            <a href="#" class="text-dark mx-2"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></a>
+            <a href="#" class="text-dark mx-2"
+              ><i class="fa-regular fa-user"></i
+            ></a>
+            <a href="#" class="text-dark mx-2 position-relative"
+              ><i class="fa-solid fa-bag-shopping"></i
+              ><span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >3</span
+              ></a
+            >
+          </div>
+        </div>
+      </nav>
     </header>
     <section class="hero">
-      <div class="container">
-        <div class="overlay-text">
-          <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
-          <p class="my-3">
-            Browse through our diverse range of meticulously crafted garments,
-            designed to bring out your individuality and cater to your sense of
-            style.
-          </p>
-          <button class="btn btn-primary rounded-pill px-5">Shop Now</button>
-          <div class="row mt-2">
-            <div class="col-4">
-              <div class="statistics">
-                <p class="fs-2 fw-bold">200+</p>
-                <p>International Brands</p>
+      <div class="swiper hero-slider">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6">
+                  <div class="hero-content">
+                    <h1 class="hero-title">Modern Collection</h1>
+                    <p class="hero-text">
+                      Discover our new collection of minimalist and modern
+                      designs.
+                    </p>
+                    <a href="#" class="btn btn-primary">Shop Now</a>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <img
+                    src="assets/images/banner__1.png"
+                    alt="Modern Collection"
+                    class="img-fluid"
+                  />
+                </div>
               </div>
             </div>
-            <div class="col-4 special-statistics">
-              <div class="statistics">
-                <p class="fs-2 fw-bold">2,000+</p>
-                <p>High-Quality Products</p>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6">
+                  <div class="hero-content">
+                    <h1 class="hero-title">Summer Vibes</h1>
+                    <p class="hero-text">
+                      Feel the summer vibes with our latest arrivals.
+                    </p>
+                    <a href="#" class="btn btn-primary">Shop Now</a>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <img
+                    src="assets/images/banner__2.png"
+                    alt="Summer Vibes"
+                    class="img-fluid"
+                  />
+                </div>
               </div>
             </div>
-            <div class="col-4">
-              <div class="statistics">
-                <p class="fs-2 fw-bold">30,000+</p>
-                <p>Happy Customers</p>
+          </div>
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6">
+                  <div class="hero-content">
+                    <h1 class="hero-title">New Arrivals</h1>
+                    <p class="hero-text">
+                      Check out our new arrivals and get the best deals.
+                    </p>
+                    <a href="#" class="btn btn-primary">Shop Now</a>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <img
+                    src="assets/images/banner__3.png"
+                    alt="New Arrivals"
+                    class="img-fluid"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
       </div>
     </section>
-    <section class="trademark">
-      <div class="trademark-slider">
-        <div class="trademark-track">
-          <img src="assets/images/trademark-1.png" alt="Trademark 1" />
-          <img src="assets/images/trademark-2.png" alt="Trademark 2" />
-          <img src="assets/images/trademark-3.png" alt="Trademark 3" />
-          <img src="assets/images/trademark-4.png" alt="Trademark 4" />
-          <img src="assets/images/trademark-5.png" alt="Trademark 5" />
-          <img src="assets/images/trademark-1.png" alt="Trademark 1" />
-          <img src="assets/images/trademark-2.png" alt="Trademark 2" />
-          <img src="assets/images/trademark-3.png" alt="Trademark 3" />
-          <img src="assets/images/trademark-4.png" alt="Trademark 4" />
-          <img src="assets/images/trademark-5.png" alt="Trademark 5" />
-        </div>
-      </div>
-    </section>
-    <section class="new-arrivals"></section>
 
-
-  <!-- start of top selling section -->
-     <section class="top-selling">
-    <h2>TOP SELLING</h2>
-    <div class="product-flex">
-
-      <!-- Product Card 1 -->
-      <div class="card">
-        <img src="assets/images/chemizPhoto.png" alt="Vertical Striped Shirt">
-        <div class="product-title">Vertical Striped Shirt</div>
-        <div class="rating"><i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i> 5.0/5</div>
-        <div class="price">$212 <span class="old-price">$235</span> <span class="discount">-20%</span></div>
-      </div>
-      <!-- Product Card 2 -->
-      <div class="card">
-        <img src="assets/images/jeansphoto.png" alt="Vertical Striped Shirt">
-        <div class="product-title">Courage Graphic T-shirt</div>
-        <div class="rating">
-          <span><i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-            
-          </span>4.0/5
-          
-          </div>
-        <div class="price">$145</div>
-      </div>
-      <!-- Product Card 3 -->
-      <div class="card">
-        <img src="assets/images/shortsphoto.png" alt="Vertical Striped Shirt">
-         <div class="product-title">Loose Fit Bermuda Shorts</div>
-        <div class="rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i> 3.0/5</div>
-        <div class="price">$80</div>
-      </div>
-      </div>
-      </section>
-
-      <!-- end of section topSelling -->
-
-
-    <!-- start dress-style -->
-<section class="dress-style-section py-5 text-center">
-  <div class="container mb-4 rounded-5 p-4">
-    <h2 class="fw-bold mb-5 mt-3">BROWSE BY DRESS STYLE</h2>
-
-    <div class="row g-3">
-      <!-- Casual -->
-      <div class="col-12 col-md-5">
-        <a href="#" class="dress-card d-block">
-          <img src="assets/images/casual.png" alt="Casual" class="img-fluid rounded-3">
-          <span>Casual</span>
-        </a>
-      </div>
-
-      <!-- Formal -->
-      <div class="col-12 col-md-7">
-        <a href="#" class="dress-card d-block">
-          <img src="assets/images/formal.png" alt="Formal" class="img-fluid rounded-3">
-          <span>Formal</span>
-        </a>
-      </div>
-
-      <!-- Party -->
-      <div class="col-12 col-md-7">
-        <a href="#" class="dress-card d-block">
-          <img src="assets/images/party.png" alt="Party" class="img-fluid rounded-3">
-          <span>Party</span>
-        </a>
-      </div>
-
-      <!-- Gym -->
-      <div class="col-12 col-md-5">
-        <a href="#" class="dress-card d-block">
-          <img src="assets/images/gym.png" alt="Gym" class="img-fluid rounded-3">
-          <span>Gym</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- end dress-style -->
-     
-    
-
-    <!-- start reviews section -->
-<section class="reviews py-5">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-5">
-      <h2 class="fw-bold m-0">OUR HAPPY CUSTOMERS</h2>
-      <div>
-        <button class="custom-arrow me-2" id="prevBtn"><i class="fa-solid fa-arrow-left"></i></button>
-        <button class="custom-arrow" id="nextBtn"><i class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <div class="reviews-wrapper row g-3 overflow-hidden">
-      <!-- Review 1 -->
-      <div class="col-md-4">
-        <div class="review-card card shadow-sm p-4 border-0 h-100">
-          <div class="stars text-warning mb-2">★★★★★</div>
-          <h6 class="fw-bold mb-1">
-            Sarah M. <span class="check-circle"><i class="fa-solid fa-check"></i></span>
-          </h6>
-          <p class="text-muted">
-            "I’m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I’ve bought has exceeded my expectations."
-          </p>
-        </div>
-      </div>
-
-      <!-- Review 2 -->
-      <div class="col-md-4">
-        <div class="review-card card shadow-sm p-4 border-0 h-100">
-          <div class="stars text-warning mb-2">★★★★★</div>
-          <h6 class="fw-bold mb-1">
-            Alex K. <span class="check-circle"><i class="fa-solid fa-check"></i></span>
-          </h6>
-          <p class="text-muted">
-            "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable."
-          </p>
-        </div>
-      </div>
-
-      <!-- Review 3 -->
-      <div class="col-md-4">
-        <div class="review-card card shadow-sm p-4 border-0 h-100">
-          <div class="stars text-warning mb-2">★★★★★</div>
-          <h6 class="fw-bold mb-1">
-            James L. <span class="check-circle"><i class="fa-solid fa-check"></i></span>
-          </h6>
-          <p class="text-muted">
-            "As someone who’s always on the lookout for unique fashion pieces, I’m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends."
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end reviews section -->
-<!--Start of Newseltter-->
-<div class="container news-cta-wrap">
-    <section class="news-cta">
-        <div>
-            <h2>STAY UPTO DATE ABOUT</h2>
-            <h2>OUR LATEST OFFERS</h2>
-        </div>
-
-        <form class="news-form">
-            <div class="input-wrap">
-                <i class="fa-regular fa-envelope"></i>
-                <input class="news-input" type="email" placeholder="Enter your email address" required>
-            </div>
-            <button class="news-btn" type="submit">Subscribe to Newsletter</button>
-        </form>
-    </section>
-</div>
-<!--End of Newseltter-->
-<!--Start of Footer-->
-<footer>
-    <div class="container footer-inner">
-        <div class="footer-top">
-            <div class="brand">
-                <h3>SHOP.CO</h3>
-                <p>We have clothes that suits your style and which you’re proud to wear. From women to men.</p>
-                <div class="social">
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
-                </div>
-            </div>
-            <div class="col">
-                <h4>Company</h4>
-                <nav class="links">
-                    <a href="#">About</a>
-                    <a href="#">Features</a>
-                    <a href="#">Works</a>
-                    <a href="#">Career</a>
-                </nav>
-            </div>
-
-            <div class="col">
-                <h4>Help</h4>
-                <nav class="links">
-                    <a href="#">Customer Support</a>
-                    <a href="#">Delivery Details</a>
-                    <a href="#">Terms &amp; Conditions</a>
-                    <a href="#">Privacy Policy</a>
-                </nav>
-            </div>
-
-            <div class="col">
-                <h4>Resources</h4>
-                <nav class="links">
-                    <a href="#">Free eBooks</a>
-                    <a href="#">Development Tutorial</a>
-                    <a href="#">How to - Blog</a>
-                    <a href="#">Youtube Playlist</a>
-                </nav>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div>Shop.co © 2000–2023, All Rights Reserved</div>
-                <div class="payments">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
-                    <img src="./assets/images/Apple_Pay_Mark_RGB_041619.svg" alt="Apple Pay">
-                    <img src="./assets/images/Google-Pay-Logo.png" alt="Google Pay">
-                </div>
-        </div>
-    </div>
-</footer>
-<!--End of Footer-->
-
-      
-   
-
-
-
-
-
-    
     <!-- bootstrap js file -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -404,6 +250,5 @@
     ></script>
     <!-- main js file -->
     <script src="assets/js/script.js"></script>
-   
   </body>
 </html>
