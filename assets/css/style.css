@@ -4,6 +4,13 @@
   --background-color: #ebebeb;
   --btn-color: #0a85d1;
   --primary-font-family: "Dosis", sans-serif;
+--grey: #666a70;
+  --card-bg: #ffffff;
+  --border-color: #e6e6e6;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --radius: 16px;
+  --gap: 24px;
+  --card-radius:16px;
 }
 body {
   font-family: var(--primary-font-family);
@@ -580,27 +587,10 @@ body {
 }
 /* end best offer */
 /*start latest Blog*/
-:root{
-  --grey: #666a70;
-  --card-bg: #ffffff;
-  --border-color: #e6e6e6;
-  --shadow: 0 10px 30px rgba(0,0,0,.08);
-  --radius: 16px;
-  --gap: 24px;
-  --card-radius:16px;
-}
-*{ box-sizing: border-box; }
+
 .lb-img{ display:block; max-width:100%; height:auto; }
 /*media query*/
-@media (min-width: 768px) {
-  .container { width: 750px; margin: 0 auto; }
-}
-@media (min-width: 992px) {  
-  .container { width: 970px; margin: 0 auto; }
-}
-@media (min-width: 1200px) { 
-  .container { width: 1170px; margin: 0 auto; }
-}
+
 .lb-card{ grid-column: span 12; }
 @media (min-width: 768px){
   .lb-card{ grid-column: span 6; }
