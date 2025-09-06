@@ -749,7 +749,6 @@ shop-perks{
 insta-section{
   background: var(--background-color);
   font-family: var(--primary-font-family);
-  margin-bottom: 70px;
 }
 .container-text{
   text-align: center;
@@ -799,6 +798,7 @@ insta-section{
   background-color: var(--background-color);
   padding: var(--section-padding) 0;
   font-family: var(--ff-jost);
+  margin-top: 70px;
 }
 
 .footer-about h3,
