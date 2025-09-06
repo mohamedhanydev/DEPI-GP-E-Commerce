@@ -14,7 +14,6 @@ body {
 .hero-slider .swiper-slide {
   display: flex;
   align-items: center;
-  height: 500px;
 }
 
 .hero-content {
@@ -31,11 +30,28 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.hero-image-container {
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero-image-container img {
+  display: block;
+  margin: auto;
+  height: 100%;
+}
+
 .btn-primary {
   background-color: var(--btn-color);
   border-color: var(--btn-color);
 }
-
+.swiper {
+  height: 100%;
+}
+.swiper-wrapper {
+  height: 100%;
+  align-items: center;
+}
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
@@ -52,81 +68,170 @@ body {
 }
 
 .main-section-text h3 {
-      padding: 20px;
-       text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-    
-    } 
-    .card{
-      position: relative;
-      /* width: 250px; */
-      text-align: center;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) ;
-    }
-    /* .card img{
+  padding: 20px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+.card {
+  position: relative;
+  /* width: 250px; */
+  text-align: center;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+/* .card img{
       width: 100%;
       border-radius: 8px;
     } */
 
-    .badge-new{
-      position: absolute;
-      top: 10px;
-      left:10px;
-      background: #000;
-      color: #fff;
-      padding: 12px;
-      font-size: 12px;
-      border-radius: 6px;
-    }
-    .badge-dicount{
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background:#ff3b3b ;
-      color: #fff;
-      font-size: 12px;
-      padding: 12px;
-      border-radius: 6px;
-    }
+.badge-new {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+.badge-dicount {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff3b3b;
+  color: #fff;
+  font-size: 12px;
+  padding: 12px;
+  border-radius: 6px;
+}
 
-    .countdown{
-      position: absolute;
-      bottom: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      background: #fff;
-      border-radius: 8px;
-      padding: 6px 12px;
-      display: flex;
-      gap: 8px;
-      font-size: 16px;
-      width: 80%;
-      
-    }
-    .card-text{
-      color: #19749f;
-      font-size: 18px;
-      font-weight: 700;
-      font-style: bold;
-    }
-    .offer{
-      color: #777;
-    }
-    /* end of featured collection section*/
-
-
-
-
+.countdown {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  width: 80%;
+  justify-content: center;
+}
+.card-text {
+  color: #19749f;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: bold;
+}
+.offer {
+  color: #777;
+}
+/* end of featured collection section*/
 
 .hero {
   background-color: var(--background-color);
 }
+@media (max-width: 992px) {
+  .hero .row .col-lg-6:first-child {
+    order: 2;
+  }
+
+  .hero .row .col-lg-6:last-child {
+    order: 1;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 0.9rem;
+  }
+
+  .hero-image-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-header .container {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .top-header-left a span,
+  .top-header-right .links {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .hero-image-container {
+    height: 200px;
+  }
+
+  .main-section-text h3 {
+    font-size: 24px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-collapse.show .more-details {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 0.9rem;
+  }
+
+  .hero-image-container {
+    height: 200px;
+  }
+
+  .main-section-text h3 {
+    font-size: 20px;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+}
+.section-padding {
+  padding: 60px 0;
+}
 /* start best selling */
- .image-wrapper {
+.image-wrapper {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -141,7 +246,7 @@ body {
 .badges-wrapper {
   position: absolute;
   top: 8px;
- right: 8px;
+  right: 8px;
   display: flex;
   gap: 6px;
 }
@@ -161,15 +266,15 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
-  border-radius: 12px;          
-  padding: 6px 14px;             
+  border-radius: 12px;
+  padding: 6px 14px;
   font-size: 12px;
   font-weight: 600;
   display: flex;
   justify-content: center;
-  gap: 16px;                   
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-  min-width: 220px;             
+  gap: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
 }
 
 .countdown-bestselling div {
@@ -178,40 +283,34 @@ body {
 
 .countdown-bestselling div span {
   display: block;
-  font-size: 15px;              
+  font-size: 15px;
   font-weight: bold;
   color: #000;
-  line-height: 1.1;              
+  line-height: 1.1;
 }
-
-
 
 .color-dot {
   display: inline-block;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid #f0f0f0; 
+  border: 2px solid #f0f0f0;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
-
 .product-colors .color-dot + .color-dot {
   margin-left: 6px;
 }
-
 
 .color-dot:hover {
   transform: scale(1.15);
   border-color: #aaa;
 }
 
-
 .color-dot.active {
   border: 2px solid #000;
 }
-
 
 .product-colors .text-muted {
   font-size: 14px;
@@ -226,11 +325,10 @@ body {
 }
 
 .btn-outline-primary:hover {
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
 }
 
 /* end best selling */
-
 
 /* start best offer */
 
@@ -243,7 +341,7 @@ body {
   padding: 15px 20px;
   border-radius: 8px;
   min-width: 80px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 .count-box h4 {
   color: #000;
@@ -254,5 +352,3 @@ body {
   color: #777;
 }
 /* end best offer */
-
-
