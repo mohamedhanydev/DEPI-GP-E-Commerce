@@ -125,3 +125,134 @@ body {
 .hero {
   background-color: var(--background-color);
 }
+/* start best selling */
+ .image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.product-img {
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+}
+
+.badges-wrapper {
+  position: absolute;
+  top: 8px;
+ right: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.badge-discount-bestselling,
+.badge-new-bestselling {
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.countdown-bestselling {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 12px;          
+  padding: 6px 14px;             
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  gap: 16px;                   
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  min-width: 220px;             
+}
+
+.countdown-bestselling div {
+  text-align: center;
+}
+
+.countdown-bestselling div span {
+  display: block;
+  font-size: 15px;              
+  font-weight: bold;
+  color: #000;
+  line-height: 1.1;              
+}
+
+
+
+.color-dot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #f0f0f0; 
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.product-colors .color-dot + .color-dot {
+  margin-left: 6px;
+}
+
+
+.color-dot:hover {
+  transform: scale(1.15);
+  border-color: #aaa;
+}
+
+
+.color-dot.active {
+  border: 2px solid #000;
+}
+
+
+.product-colors .text-muted {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.btn-outline-primary {
+  border-radius: 30px;
+  padding: 8px 24px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  transform: translateY(-2px); 
+}
+
+/* end best selling */
+
+
+/* start best offer */
+
+.offer-section h2 {
+  font-size: 2rem;
+}
+.count-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  min-width: 80px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.count-box h4 {
+  color: #000;
+  font-size: 1.5rem;
+}
+.count-box small {
+  font-size: 0.85rem;
+  color: #777;
+}
+/* end best offer */
+
+
