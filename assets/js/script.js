@@ -24,3 +24,14 @@ function setHeroHeight() {
 
 setHeroHeight();
 window.addEventListener("resize", setHeroHeight);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const instaStrip = document.querySelector(".insta-strip");
+  const items = instaStrip.querySelectorAll(".insta-item");
+
+  // Clone items for a seamless loop
+  items.forEach(item => {
+    const clone = item.cloneNode(true);
+    instaStrip.appendChild(clone);
+  });
+});
