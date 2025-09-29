@@ -9,7 +9,7 @@ const swiper = new Swiper(".hero-slider", {
     clickable: true,
   },
   autoplay: {
-    delay: 3500,
+    delay: 2500,
     disableOnInteraction: false,
   },
 });
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const items = instaStrip.querySelectorAll(".insta-item");
 
   // Clone items for a seamless loop
-  items.forEach(item => {
+  items.forEach((item) => {
     const clone = item.cloneNode(true);
     instaStrip.appendChild(clone);
   });
