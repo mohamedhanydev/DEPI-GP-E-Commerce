@@ -1,76 +1,78 @@
+import logo from "../assets/logo__1.png";
+
 export default function Header() {
   return (
-    <header class="header" id="main-header">
-      <div class="top-header bg-dark py-2 text-white">
-        <div class="container d-flex justify-content-between align-items-center">
-          <div class="top-header-left d-flex gap-2">
+    <header className="header" id="main-header">
+      <div className="top-header bg-dark py-2 text-white">
+        <div className="container d-flex justify-content-between align-items-center">
+          <div className="top-header-left d-flex gap-2">
             <a
               href="mailto:info@depigp.com"
-              class="text-white text-decoration-none"
+              className="text-white text-decoration-none"
             >
-              <i class="fa-solid fa-envelope"></i>
+              <i className="fa-solid fa-envelope"></i>
               <span>info@depigp.com</span>
             </a>
-            <a href="#" class="text-white text-decoration-none">
-              <i class="fa-solid fa-location-dot"></i>
+            <a href="#" className="text-white text-decoration-none">
+              <i className="fa-solid fa-location-dot"></i>
               <span>123 Main St, Anytown, USA</span>
             </a>
           </div>
-          <div class="top-header-right d-flex gap-3">
-            <div class="dropdown">
+          <div className="top-header-right d-flex gap-3">
+            <div className="dropdown">
               <button
                 type="button"
-                class="btn nav-link dropdown-toggle"
+                className="btn nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
                 English
               </button>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Arabic
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item active" href="#">
+                  <a className="dropdown-item active" href="#">
                     English
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     French
                   </a>
                 </li>
               </ul>
             </div>
-            <div class="links">
-              <a href="#" class="text-white">
-                <i class="fa-brands fa-facebook-f"></i>
+            <div className="links">
+              <a href="#" className="text-white">
+                <i className="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#" class="text-white">
-                <i class="fa-brands fa-twitter"></i>
+              <a href="#" className="text-white">
+                <i className="fa-brands fa-twitter"></i>
               </a>
-              <a href="#" class="text-white">
-                <i class="fa-brands fa-instagram"></i>
+              <a href="#" className="text-white">
+                <i className="fa-brands fa-instagram"></i>
               </a>
-              <a href="#" class="text-white">
-                <i class="fa-brands fa-linkedin-in"></i>
+              <a href="#" className="text-white">
+                <i className="fa-brands fa-linkedin-in"></i>
               </a>
             </div>
           </div>
         </div>
       </div>
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">
+      <nav className="navbar navbar-expand-md navbar-light bg-light">
+        <div className="container">
+          <a className="navbar-brand" href="index.html">
             <img
-              src="assets/images/logo__1.png"
+              src={logo}
               alt="DEPI-GP Logo"
-              class="img-fluid"
+              className="img-fluid"
             />
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -78,75 +80,75 @@ export default function Header() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav mx-auto">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
                   Home
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   Shop
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   About
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   Blog
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
                   Contact
                 </a>
               </li>
             </ul>
-            <div class="more-details d-flex align-items-center">
-              <div class="dropdown">
+            <div className="more-details d-flex align-items-center">
+              <div className="dropdown">
                 <button
                   type="button"
-                  class="btn nav-link dropdown-toggle"
+                  className="btn nav-link dropdown-toggle"
                   data-bs-toggle="dropdown"
                 >
                   USD
                 </button>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#">
                       EUR
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item active" href="#">
+                    <a className="dropdown-item active" href="#">
                       USD
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#">
                       GBP
                     </a>
                   </li>
                 </ul>
               </div>
-              <a href="#" class="text-dark mx-2 hide-on-collapse">
-                <i class="fa-solid fa-magnifying-glass"></i>
+              <a href="#" className="text-dark mx-2 hide-on-collapse">
+                <i className="fa-solid fa-magnifying-glass"></i>
               </a>
-              <a href="#" class="text-dark mx-2 hide-on-collapse">
-                <i class="fa-regular fa-user"></i>
+              <a href="#" className="text-dark mx-2 hide-on-collapse">
+                <i className="fa-regular fa-user"></i>
               </a>
               <a
                 href="#"
-                class="text-dark mx-2 position-relative hide-on-collapse"
+                className="text-dark mx-2 position-relative hide-on-collapse"
               >
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <i className="fa-solid fa-bag-shopping"></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   3
                 </span>
               </a>

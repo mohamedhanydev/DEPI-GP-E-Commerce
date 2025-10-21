@@ -1,16 +1,16 @@
 export default function Footer() {
   return (
-    <footer class="footer">
-      <div class="container py-5">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="footer-about pb-4">
-              <h3 class="h3">About Us</h3>
+    <footer className="footer">
+      <div className="container py-5">
+        <div className="row">
+          <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="footer-about pb-4">
+              <h3 className="h3">About Us</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
-              <div class="social-icons">
+              <div className="social-icons">
                 <a href="#">
                   <ion-icon name="logo-facebook"></ion-icon>
                 </a>
@@ -25,27 +25,27 @@ export default function Footer() {
                 </a>
               </div>
               <p>Guaranteed Payment Solutions</p>
-              <div class="payment-icons">
-                <i class="fab fa-paypal"></i>
-                <i class="fab fa-cc-visa"></i>
-                <i class="fab fa-cc-mastercard"></i>
+              <div className="payment-icons">
+                <i className="fab fa-paypal"></i>
+                <i className="fab fa-cc-visa"></i>
+                <i className="fab fa-cc-mastercard"></i>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="footer-links">
+          <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="footer-links">
               <h3
-                class="footer-title"
+                className="footer-title"
                 data-bs-toggle="collapse"
                 data-bs-target="#quick-links"
               >
                 Quick Links
                 <ion-icon
                   name="chevron-down-outline"
-                  class="d-md-none"
+                  className="d-md-none"
                 ></ion-icon>
               </h3>
-              <ul id="quick-links" class="collapse d-md-block">
+              <ul id="quick-links" className="collapse d-md-block">
                 <li>
                   <a href="#">Home</a>
                 </li>
@@ -64,20 +64,20 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="footer-links">
+          <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="footer-links">
               <h3
-                class="footer-title"
+                className="footer-title"
                 data-bs-toggle="collapse"
                 data-bs-target="#information"
               >
                 Information
                 <ion-icon
                   name="chevron-down-outline"
-                  class="d-md-none"
+                  className="d-md-none"
                 ></ion-icon>
               </h3>
-              <ul id="information" class="collapse d-md-block">
+              <ul id="information" className="collapse d-md-block">
                 <li>
                   <a href="#">My Account</a>
                 </li>
@@ -96,20 +96,20 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="footer-links">
+          <div className="col-lg-3 col-md-6 col-sm-12">
+            <div className="footer-links">
               <h3
-                class="footer-title"
+                className="footer-title"
                 data-bs-toggle="collapse"
                 data-bs-target="#policies"
               >
                 Policies
                 <ion-icon
                   name="chevron-down-outline"
-                  class="d-md-none"
+                  className="d-md-none"
                 ></ion-icon>
               </h3>
-              <ul id="policies" class="collapse d-md-block">
+              <ul id="policies" className="collapse d-md-block">
                 <li>
                   <a href="#">Privacy Policy</a>
                 </li>
@@ -131,9 +131,9 @@ export default function Footer() {
         </div>
       </div>
       <hr />
-      <div class="container py-3">
-        <div class="row">
-          <p class="text-center">© 2025 E-Commerce. All rights reserved.</p>
+      <div className="container py-3">
+        <div className="row">
+          <p className="text-center">© 2025 E-Commerce. All rights reserved.</p>
         </div>
       </div>
     </footer>

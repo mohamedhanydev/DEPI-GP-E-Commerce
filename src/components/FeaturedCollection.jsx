@@ -1,23 +1,28 @@
+import grid1 from "../assets/grid__1.png";
+import grid2 from "../assets/grid__2.png";
+import grid6 from "../assets/grid__6.png";
+import grid4 from "../assets/grid__4.png";
+
 export default function FeaturedCollection() {
   return (
-    <section class="featured-collection py-4 my-4">
-      <div class="container">
-        <div class="row">
-          <div class="main-section-text">
+    <section className="featured-collection py-4 my-4">
+      <div className="container">
+        <div className="row">
+          <div className="main-section-text">
             <h3>Featured Collection</h3>
           </div>
         </div>
-        <div class="row gy-4 mb-4">
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card product-card">
-              <span class="badge-new">New</span>
-              <span class="badge-dicount">-15%</span>
+        <div className="row gy-4 mb-4">
+          <div className="col-lg-3 col-md-6 col-12">
+            <div className="card product-card">
+              <span className="badge-new">New</span>
+              <span className="badge-dicount">-15%</span>
               <img
-                src="assets/images/grid__1.png"
-                class="card-img-top"
+                src={grid1}
+                className="card-img-top"
                 alt="chemiz"
               />
-              <div class="countdown">
+              <div className="countdown">
                 <div>
                   <b>543</b> <br />
                   Days
@@ -35,60 +40,60 @@ export default function FeaturedCollection() {
                   sec
                 </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">W. Men Formal T-shirt</h5>
-                <p class="card-text text-center">
-                  <del class="offer">$72.00</del> $47.00
+              <div className="card-body">
+                <h5 className="card-title">W. Men Formal T-shirt</h5>
+                <p className="card-text text-center">
+                  <del className="offer">$72.00</del> $47.00
                 </p>
               </div>
-              <div class="card-overlay">
-                <button class="btn btn-primary">Add to Cart</button>
+              <div className="card-overlay">
+                <button className="btn btn-primary">Add to Cart</button>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card">
+          <div className="col-lg-3 col-md-6 col-12">
+            <div className="card">
               <img
-                src="assets/images/grid__2.png"
-                class="card-img-top"
+                src={grid2}
+                className="card-img-top"
                 alt="shirt"
               />
-              <div class="card-body">
-                <h5 class="card-title">B. Pair Of Blue Shoes</h5>
-                <p class="card-text text-center">$47.00</p>
+              <div className="card-body">
+                <h5 className="card-title">B. Pair Of Blue Shoes</h5>
+                <p className="card-text text-center">$47.00</p>
               </div>
-              <div class="card-overlay">
-                <button class="btn btn-primary">Add to Cart</button>
+              <div className="card-overlay">
+                <button className="btn btn-primary">Add to Cart</button>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card">
-              <span class="badge-new">New</span>
+          <div className="col-lg-3 col-md-6 col-12">
+            <div className="card">
+              <span className="badge-new">New</span>
 
               <img
-                src="assets/images/grid__6.png"
-                class="card-img-top"
+                src={grid6}
+                className="card-img-top"
                 alt="shoes"
               />
-              <div class="card-body">
-                <h5 class="card-title">F. Ultmate Smart Watch</h5>
-                <p class="card-text text-center">$47.00</p>
+              <div className="card-body">
+                <h5 className="card-title">F. Ultmate Smart Watch</h5>
+                <p className="card-text text-center">$47.00</p>
               </div>
-              <div class="card-overlay">
-                <button class="btn btn-primary">Add to Cart</button>
+              <div className="card-overlay">
+                <button className="btn btn-primary">Add to Cart</button>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card">
-              <span class="badge-dicount">-15%</span>
+          <div className="col-lg-3 col-md-6 col-12">
+            <div className="card">
+              <span className="badge-dicount">-15%</span>
               <img
-                src="assets/images/grid__4.png"
-                class="card-img-top"
+                src={grid4}
+                className="card-img-top"
                 alt="watch"
               />
-              <div class="countdown">
+              <div className="countdown">
                 <div>
                   <b>543</b> <br />
                   Days
@@ -106,23 +111,23 @@ export default function FeaturedCollection() {
                   sec
                 </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">S. Mokmol Jacket</h5>
-                <p class="card-text text-center">
-                  <del class="offer">$72.00</del> $47.00
+              <div className="card-body">
+                <h5 className="card-title">S. Mokmol Jacket</h5>
+                <p className="card-text text-center">
+                  <del className="offer">$72.00</del> $47.00
                 </p>
               </div>
-              <div class="card-overlay">
-                <button class="btn btn-primary">Add to Cart</button>
+              <div className="card-overlay">
+                <button className="btn btn-primary">Add to Cart</button>
               </div>
             </div>
           </div>
         </div>
         <a
-          class="btn btn-primary d-block mx-auto"
+          className="btn btn-primary d-block mx-auto"
           href="index.html"
           role="button"
-          style="width: fit-content"
+          style={{ width: "fit-content" }}
         >
           view All
         </a>

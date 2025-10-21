@@ -1,87 +1,87 @@
+import banner4 from "../assets/banner__4.png";
+import grid4 from "../assets/grid__4.png";
+import grid6 from "../assets/grid__6.png";
+
 export default function Hero() {
   return (
-    <section class="hero">
-      <div class="swiper hero-slider">
-        <div class="swiper-wrapper">
-          {/* Slide 1 */}
-          <div class="swiper-slide">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6">
-                  <div class="hero-content">
-                    <h1 class="hero-title">Modern Collection</h1>
-                    <p class="hero-text">
+    <section className="hero">
+      <div className="swiper hero-slider">
+        <div className="swiper-wrapper">
+          <div className="swiper-slide">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-6">
+                  <div className="hero-content">
+                    <h1 className="hero-title">Modern Collection</h1>
+                    <p className="hero-text">
                       Discover our new collection of minimalist and modern
                       designs.
                     </p>
-                    <a href="#" class="btn btn-primary">
+                    <a href="#" className="btn btn-primary">
                       Shop Now
                     </a>
                   </div>
                 </div>
-                <div class="col-lg-6 hero-image-container">
+                <div className="col-lg-6 hero-image-container">
                   <img
-                    src="assets/images/banner__4.png"
+                    src={banner4}
                     alt="Modern Collection"
-                    class="img-fluid"
+                    className="img-fluid"
                   />
                 </div>
               </div>
             </div>
           </div>
-          {/* Slide 2 */}
-          <div class="swiper-slide">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6">
-                  <div class="hero-content">
-                    <h1 class="hero-title">Summer Vibes</h1>
-                    <p class="hero-text">
+          <div className="swiper-slide">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-6">
+                  <div className="hero-content">
+                    <h1 className="hero-title">Summer Vibes</h1>
+                    <p className="hero-text">
                       Feel the summer vibes with our latest arrivals.
                     </p>
-                    <a href="#" class="btn btn-primary">
+                    <a href="#" className="btn btn-primary">
                       Shop Now
                     </a>
                   </div>
                 </div>
-                <div class="col-lg-6 hero-image-container">
+                <div className="col-lg-6 hero-image-container">
                   <img
-                    src="assets/images/grid__4.png"
+                    src={grid4}
                     alt="Summer Vibes"
-                    class="img-fluid"
+                    className="img-fluid"
                   />
                 </div>
               </div>
             </div>
           </div>
-          {/* Slide 3 */}
-          <div class="swiper-slide">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6">
-                  <div class="hero-content">
-                    <h1 class="hero-title">New Arrivals</h1>
-                    <p class="hero-text">
+          <div className="swiper-slide">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-6">
+                  <div className="hero-content">
+                    <h1 className="hero-title">New Arrivals</h1>
+                    <p className="hero-text">
                       Check out our new arrivals and get the best deals.
                     </p>
-                    <a href="#" class="btn btn-primary">
+                    <a href="#" className="btn btn-primary">
                       Shop Now
                     </a>
                   </div>
                 </div>
-                <div class="col-lg-6 hero-image-container">
+                <div className="col-lg-6 hero-image-container">
                   <img
-                    src="assets/images/grid__6.png"
+                    src={grid6}
                     alt="New Arrivals"
-                    class="img-fluid"
+                    className="img-fluid"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Add Pagination */}
-        <div class="swiper-pagination"></div>
+        <div className="swiper-pagination"></div>
       </div>
     </section>
   );
