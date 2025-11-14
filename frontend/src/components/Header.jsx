@@ -65,11 +65,7 @@ export default function Header() {
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
           <a className="navbar-brand" href="index.html">
-            <img
-              src={logo}
-              alt="DEPI-GP Logo"
-              className="img-fluid"
-            />
+            <img src={logo} alt="DEPI-GP Logo" className="img-fluid" />
           </a>
           <button
             className="navbar-toggler"
@@ -100,7 +96,7 @@ export default function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/Blog">
                   Blog
                 </a>
               </li>
