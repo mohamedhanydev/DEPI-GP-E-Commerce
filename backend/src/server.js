@@ -7,8 +7,11 @@ async function startApp() {
   try {
     await DB();
     app.use(express.json());
+    app.use("/api/products", products);
     app.listen(PORT, console.log(`server is listening on port: ${PORT}`));
   } catch (error) {
     console.error(`Failed to connect to db: ` + error.message);
+    process.exit(1);
   }
 }
+startApp();
