@@ -47,19 +47,19 @@ export default function Footer() {
               </h3>
               <ul id="quick-links" className="collapse d-md-block">
                 <li>
-                  <a href="#">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="#">Shop</a>
+                  <a href="/shop">Shop</a>
                 </li>
                 <li>
-                  <a href="#">Blog</a>
+                  <a href="/blog">Blog</a>
                 </li>
                 <li>
-                  <a href="#">About Us</a>
+                  <a href="about-us">About Us</a>
                 </li>
                 <li>
-                  <a href="#">Contact Us</a>
+                  <a href="contact-us">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -111,16 +111,16 @@ export default function Footer() {
               </h3>
               <ul id="policies" className="collapse d-md-block">
                 <li>
-                  <a href="#">Privacy Policy</a>
+                  <a href="/privacy-policy">Privacy Policy</a>
                 </li>
                 <li>
-                  <a href="#">Terms & Conditions</a>
+                  <a href="/terms-conditions">Terms & Conditions</a>
                 </li>
                 <li>
-                  <a href="#">Shipping Policy</a>
+                  <a href="/shipping-policy">Shipping Policy</a>
                 </li>
                 <li>
-                  <a href="#">Return Policy</a>
+                  <a href="/return-policy">Return Policy</a>
                 </li>
                 <li>
                   <a href="#">FAQs</a>
