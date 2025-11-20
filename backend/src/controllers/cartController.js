@@ -53,3 +53,18 @@ const updateCartItemQuantity = async (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
+const deleteOneCartItem = async (req, res) => {
+  try {
+    const userId = req.user.id,
+      productId = req.body.productId;
+    const deletedCartItem = await cartService.deleteOneCartItem(
+      userId,
+      productId
+    );
+    res.status(200).send({ status: "OK", data: deletedCartItem });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
+};
