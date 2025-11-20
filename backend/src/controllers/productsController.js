@@ -46,7 +46,16 @@ const updateOneProduct = (req, res) => {
   }
 };
 const deleteOneProduct = (req, res) => {
-  res.send("deleted one product");
+  try {
+    const deletedProduct = productsService.deleteOneProduct(
+      req.params.productId
+    );
+    res.status(200).send({ status: "OK", data: deletedProduct });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
 };
 module.exports = {
   getAllProducts,
