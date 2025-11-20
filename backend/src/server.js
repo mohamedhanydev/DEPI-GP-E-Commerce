@@ -1,13 +1,14 @@
 const express = require("express");
-const DB = require("./config/db");
+const DB = require("./database/db");
 const PORT = process.env.PORT || 4000;
 const app = express();
+const productsRouter = require("./routes/productsRoute");
 
 async function startApp() {
   try {
     await DB();
     app.use(express.json());
-    app.use("/api/products", products);
+    app.use("/api/products", productsRouter);
     app.listen(PORT, console.log(`server is listening on port: ${PORT}`));
   } catch (error) {
     console.error(`Failed to connect to db: ` + error.message);
