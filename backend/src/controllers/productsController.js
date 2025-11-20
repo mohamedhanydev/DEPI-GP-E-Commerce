@@ -34,17 +34,16 @@ const createNewProduct = (req, res) => {
 const updateOneProduct = (req, res) => {
   try {
     const dataToBeUpdated = req.body;
-    const updatedData = productsService.updateOneProduct(
+    const updatedProduct = productsService.updateOneProduct(
       req.params.productId,
       dataToBeUpdated
     );
-    res.status(200).send({ status: "OK", data: updatedData });
+    res.status(200).send({ status: "OK", data: updatedProduct });
   } catch (error) {
     res
       .status(error.status || 500)
       .send({ status: "FAILED", message: error.message });
   }
-  res.send("updated one product");
 };
 const deleteOneProduct = (req, res) => {
   res.send("deleted one product");
