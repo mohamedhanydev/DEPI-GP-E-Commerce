@@ -10,8 +10,14 @@ const getAllProducts = (req, res) => {
   }
 };
 const getOneProduct = (req, res) => {
-  //return specific product
-  res.send("one existing product");
+  try {
+    const oneProduct = productsService.getOneProduct(req.params.productId);
+    res.status(200).send({ status: "OK", data: oneProduct });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
 };
 const createNewProduct = (req, res) => {
   res.send("created new product");
