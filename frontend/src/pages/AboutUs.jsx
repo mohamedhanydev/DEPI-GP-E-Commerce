@@ -10,7 +10,6 @@ const AboutUs = () => {
 
       <div className="row justify-content-center">
         <div className="col-lg-10">
-          {/* --- Section 1: Our Story --- */}
           <section className="mb-5">
             <h2 className="mb-4 fw-bold text-primary">Our Story</h2>
             <p>
@@ -26,14 +25,12 @@ const AboutUs = () => {
               transparency, and customer focus**—has remained the same.
             </p>
             <div className="text-center my-4">
-              {/* Optional image to break up text */}
               [Image of modern office space]
             </div>
           </section>
 
           <hr />
 
-          {/* --- Section 2: Our Mission --- */}
           <section className="mb-5">
             <h2 className="mb-4 fw-bold text-primary">Our Mission</h2>
             <p>
@@ -57,7 +54,6 @@ const AboutUs = () => {
 
           <hr />
 
-          {/* --- Section 3: Our Core Values --- */}
           <section className="mb-5">
             <h2 className="mb-4 fw-bold text-primary">Our Core Values</h2>
             <div className="row">
@@ -88,7 +84,6 @@ const AboutUs = () => {
 
           <hr />
 
-          {/* --- Call to Action --- */}
           <section className="text-center mt-5">
             <h3 className="fw-bold">Ready to Join Our Community?</h3>
             <p className="lead">
