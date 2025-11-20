@@ -36,3 +36,20 @@ const addCartItem = async (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
+const updateCartItemQuantity = async (req, res) => {
+  try {
+    const userId = req.user.id,
+      newQuantity = req.body.quantity,
+      productId = req.body.productId;
+    const updatedCartItemQuantity = await cartService.updateCartItemQuantity(
+      userId,
+      productId,
+      newQuantity
+    );
+    res.status(200).send({ status: "OK", data: newQuantity });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
+};
