@@ -20,6 +20,16 @@ const getOneProduct = (req, res) => {
   }
 };
 const createNewProduct = (req, res) => {
+  try {
+    // TODO: validate the data before delegating the creation of new product
+    const productData = req.body;
+    const newProduct = productsService.createNewProduct(productData);
+    res.status(200).send({ status: "OK", data: newProduct });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
   res.send("created new product");
 };
 const updateOneProduct = (req, res) => {
