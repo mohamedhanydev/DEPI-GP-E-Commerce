@@ -73,13 +73,14 @@ const ProductCard = ({ product }) => {
           <div className="mt-auto pt-2">
             <h4 className="text-primary mb-3">{formattedPrice}</h4>
 
-            {/* In a real app, you'd use a React Router Link here to the individual product page */}
-            <a
-              href={product.slug}
+            {/* Product details page has been removed */}
+            <button
               className="btn btn-outline-secondary btn-sm me-2"
+              disabled
+              title="Product details coming soon"
             >
               View Details
-            </a>
+            </button>
 
             <button
               onClick={handleAddToCart}
