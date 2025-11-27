@@ -12,6 +12,13 @@ import dress1 from "../assets/dress1.jpg";
 import leatherJacket from "../assets/leather jacket (1).jpg";
 import baby1 from "../assets/baby1.jpg";
 import baby2 from "../assets/baby2.jpg";
+// import { useCart } from "../context/CartContext";
+// import { useNavigate } from "react-router-dom";
+
+// const { addToCart } = useCart();
+// const navigate = useNavigate(); // لو حابة تروحي للكارت بعد الإضافة
+
+
 
 export default function BestSelling() {
   return (

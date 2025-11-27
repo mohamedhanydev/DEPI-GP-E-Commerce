@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 // Don't forget to import 'bootstrap/dist/css/bootstrap.min.css' in your main file
 
 // Mock data structure for e-commerce products

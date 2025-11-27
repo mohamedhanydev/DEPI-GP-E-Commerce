@@ -140,12 +140,13 @@ export default function Header() {
                 <i className="fa-regular fa-user"></i>
               </a>
               <a
-                href="#"
+                href="/cart"
                 className="text-dark mx-2 position-relative hide-on-collapse"
               >
                 <i className="fa-solid fa-bag-shopping"></i>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  3
+                  2 {/* Example cart item count */}
+                  <span className="visually-hidden">unread messages</span>
                 </span>
               </a>
             </div>
