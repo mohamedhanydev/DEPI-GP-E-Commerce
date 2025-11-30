@@ -2,13 +2,41 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 
 const CartPage = () => {
-  const { cartItems, addToCart, removeFromCart, clearCart } = useCart();
+  const {
+    cartItems,
+    removeFromCart,
+    clearCart,
+    increaseQuantity,
+    decreaseQuantity,
+    currency,
+    rates,
+  } = useCart();
+
+  if (!rates) {
+    return (
+      <div className="container my-5 text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-2">Loading cart...</p>
+      </div>
+    );
+  }
+
+  const formatPrice = (price) => {
+    const convertedPrice = price * (rates[currency] || 1);
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency,
+    }).format(convertedPrice);
+  };
 
   // احسب التوتال
   const calculateTotal = () => {
-    return cartItems
-      .reduce((total, item) => total + item.price, 0)
-      .toFixed(2);
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
   return (
@@ -48,19 +76,25 @@ const CartPage = () => {
                 </td>
 
                 <td>{item.name}</td>
-                <td>${item.price}</td>
+                <td>{formatPrice(item.price)}</td>
 
                 <td>
-                  <button className="btn btn-sm btn-outline-secondary me-2">
+                  <button
+                    className="btn btn-sm btn-outline-secondary me-2"
+                    onClick={() => decreaseQuantity(item.id)}
+                  >
                     −
                   </button>
-                  1
-                  <button className="btn btn-sm btn-outline-secondary ms-2">
+                  {item.quantity}
+                  <button
+                    className="btn btn-sm btn-outline-secondary ms-2"
+                    onClick={() => increaseQuantity(item.id)}
+                  >
                     +
                   </button>
                 </td>
 
-                <td>${item.price}</td>
+                <td>{formatPrice(item.price * item.quantity)}</td>
 
                 <td>
                   <button
@@ -111,7 +145,9 @@ const CartPage = () => {
             <label className="fw-bold">Zip / Postal Code</label>
             <input type="text" className="form-control mb-3" />
 
-            <button className="btn btn-primary w-100">Calculate Shipping</button>
+            <button className="btn btn-primary w-100">
+              Calculate Shipping
+            </button>
           </div>
         </div>
 
@@ -134,7 +170,7 @@ const CartPage = () => {
 
             <div className="d-flex justify-content-between mb-3">
               <span className="fw-bold">Cart Total</span>
-              <span className="fw-bold">${calculateTotal()}</span>
+              <span className="fw-bold">{formatPrice(calculateTotal())}</span>
             </div>
 
             <button className="btn btn-success w-100">
