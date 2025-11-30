@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react"; // Using Lucide React icons for a modern touch
+import PropTypes from "prop-types";
 
 // Simple component for displaying contact information
-const ContactInfoItem = ({ Icon, title, content }) => (
+// eslint-disable-next-line no-unused-vars
+const ContactInfoItem = ({ IconComponent, title, content }) => (
   <div className="d-flex align-items-start mb-4">
     <div className="p-3 bg-primary text-white rounded-circle me-3 flex-shrink-0">
-      <Icon size={24} />
+      <IconComponent size={24} />
     </div>
     <div>
       <h5 className="mb-0 fw-bold">{title}</h5>
@@ -13,6 +15,12 @@ const ContactInfoItem = ({ Icon, title, content }) => (
     </div>
   </div>
 );
+
+ContactInfoItem.propTypes = {
+  IconComponent: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -174,19 +182,19 @@ const ContactUs = () => {
           </p>
 
           <ContactInfoItem
-            Icon={MapPin}
+            IconComponent={MapPin}
             title="Office Address"
             content="123 Web Dev Street, Suite 500, Tech City"
           />
 
           <ContactInfoItem
-            Icon={Phone}
+            IconComponent={Phone}
             title="Call Us"
             content="(555) 123-4567"
           />
 
           <ContactInfoItem
-            Icon={Mail}
+            IconComponent={Mail}
             title="Email Support"
             content="support@example.com"
           />
