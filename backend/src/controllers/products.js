@@ -1,7 +1,7 @@
-const productsService = require("../services/productsService");
-const getAllProducts = (req, res) => {
+const productsService = require("../services/products");
+const getAllProducts = async (req, res) => {
   try {
-    const allProducts = productsService.getAllProducts();
+    const allProducts = await productsService.getAllProducts();
     res.status(200).send({ status: "OK", data: allProducts });
   } catch (error) {
     res
@@ -9,9 +9,9 @@ const getAllProducts = (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const getOneProduct = (req, res) => {
+const getOneProduct = async (req, res) => {
   try {
-    const oneProduct = productsService.getOneProduct(req.params.productId);
+    const oneProduct = await productsService.getOneProduct(req.params.id);
     res.status(200).send({ status: "OK", data: oneProduct });
   } catch (error) {
     res
@@ -19,11 +19,10 @@ const getOneProduct = (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const createNewProduct = (req, res) => {
+const createOneProduct = async (req, res) => {
   try {
-    // TODO: validate the data before delegating the creation of new product
-    const productData = req.body;
-    const newProduct = productsService.createNewProduct(productData);
+    const data = req.body;
+    const newProduct = await productsService.createOneProduct(data);
     res.status(200).send({ status: "OK", data: newProduct });
   } catch (error) {
     res
@@ -31,12 +30,12 @@ const createNewProduct = (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const updateOneProduct = (req, res) => {
+const updateOneProduct = async (req, res) => {
   try {
-    const dataToBeUpdated = req.body;
-    const updatedProduct = productsService.updateOneProduct(
-      req.params.productId,
-      dataToBeUpdated
+    const changes = req.body;
+    const updatedProduct = await productsService.updateOneProduct(
+      req.params.id,
+      changes
     );
     res.status(200).send({ status: "OK", data: updatedProduct });
   } catch (error) {
@@ -45,10 +44,10 @@ const updateOneProduct = (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const deleteOneProduct = (req, res) => {
+const deleteOneProduct = async (req, res) => {
   try {
-    const deletedProduct = productsService.deleteOneProduct(
-      req.params.productId
+    const deletedProduct = await productsService.deleteOneProduct(
+      req.params.id
     );
     res.status(200).send({ status: "OK", data: deletedProduct });
   } catch (error) {
@@ -60,7 +59,7 @@ const deleteOneProduct = (req, res) => {
 module.exports = {
   getAllProducts,
   getOneProduct,
-  createNewProduct,
+  createOneProduct,
   updateOneProduct,
   deleteOneProduct,
 };
