@@ -921,3 +921,25 @@ shop-perks {
 .dropdown-item:hover::after {
   width: 100%;
 }
+.checkout-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.order-box {
+  background: #eee;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+.order-title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.place-order-btn {
+  width: 100%;
+}
