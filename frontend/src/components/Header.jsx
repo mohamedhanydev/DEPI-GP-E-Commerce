@@ -1,6 +1,14 @@
 import logo from "../assets/logo__1.png";
+import { useCart } from "../context/CartContext";
+
+const currencies = ["USD", "EUR", "GBP"];
 
 export default function Header() {
+  const { cartItems, currency, setCurrency } = useCart();
+  const cartItemCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   return (
     <header className="header" id="main-header">
       <div className="top-header bg-dark py-2 text-white">
@@ -113,24 +121,20 @@ export default function Header() {
                   className="btn nav-link dropdown-toggle"
                   data-bs-toggle="dropdown"
                 >
-                  USD
+                  {currency}
                 </button>
                 <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      EUR
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item active" href="#">
-                      USD
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      GBP
-                    </a>
-                  </li>
+                  {currencies.map((c) => (
+                    <li key={c}>
+                      <a
+                        className={`dropdown-item ${c === currency ? "active" : ""}`}
+                        href="#"
+                        onClick={() => setCurrency(c)}
+                      >
+                        {c}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <a href="#" className="text-dark mx-2 hide-on-collapse">
@@ -145,7 +149,7 @@ export default function Header() {
               >
                 <i className="fa-solid fa-bag-shopping"></i>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  2 {/* Example cart item count */}
+                  {cartItemCount}
                   <span className="visually-hidden">unread messages</span>
                 </span>
               </a>
