@@ -5,27 +5,10 @@ class ServiceError extends Error {
     this.status = status;
   }
 }
-const Product = require("../models/Product");
-const getAllProducts = async (query) => {
+const products = require("../database/products");
+const getAllProducts = async () => {
   try {
-    let filter = {};
-    if (query.category) {
-      filter.category = query.category;
-    }
-    if (query.search) {
-      filter.name = { $regex: query.search, $options: "i" };
-    }
-
-    let sort = {};
-    if (query.sort) {
-      if (query.sort === "price_asc") {
-        sort.newPrice = 1;
-      } else if (query.sort === "price_desc") {
-        sort.newPrice = -1;
-      }
-    }
-
-    const allProducts = await Product.find(filter).sort(sort);
+    const allProducts = await products.getAllProducts();
     return allProducts;
   } catch (error) {
     throw error;
@@ -33,7 +16,7 @@ const getAllProducts = async (query) => {
 };
 const getOneProduct = async (id) => {
   try {
-    const oneProduct = await Product.findById(id);
+    const oneProduct = await products.getOneProduct(id);
     if (!oneProduct) {
       throw new ServiceError(`Product with ID '${id}' not found.`, 404);
     }
@@ -44,7 +27,7 @@ const getOneProduct = async (id) => {
 };
 const createOneProduct = async (data) => {
   try {
-    const newProduct = await Product.create(data);
+    const newProduct = await products.createOneProduct(data);
     return newProduct;
   } catch (error) {
     throw error;
@@ -68,9 +51,7 @@ const updateOneProduct = async (id, changes) => {
         400
       );
     }
-    const updatedProduct = await Product.findByIdAndUpdate(id, changes, {
-      new: true,
-    });
+    const updatedProduct = await products.updateOneProduct(id, changes);
     if (!updatedProduct) {
       throw new ServiceError(
         `Product with ID '${id}' not found for updating.`,
@@ -84,8 +65,8 @@ const updateOneProduct = async (id, changes) => {
 };
 const deleteOneProduct = async (id) => {
   try {
-    const deletedProduct = await Product.findByIdAndDelete(id);
-    if (!deletedProduct) {
+    const deletedProduct = await products.deleteOneProduct(id);
+    if (deletedProduct === 0) {
       throw new ServiceError(
         `Product with ID '${id}' not found for deletion.`,
         404

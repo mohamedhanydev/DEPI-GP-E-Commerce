@@ -2,19 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const connectDB = require("./src/database/connect");
-const products = require("./src/routes/products");
-const auth = require("./src/routes/auth");
-const cart = require("./src/routes/cart");
-const orders = require("./src/routes/orders");
+const connectDB = require("./database/connect");
+const products = require("./routes/products");
 const PORT = process.env.PORT || 3500;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/products", products);
-app.use("/api/auth", auth);
-app.use("/api/cart", cart);
-app.use("/api/orders", orders);
 
 async function startServer() {
   try {
