@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const {
@@ -173,9 +174,9 @@ const CartPage = () => {
               <span className="fw-bold">{formatPrice(calculateTotal())}</span>
             </div>
 
-            <button className="btn btn-success w-100">
+            <Link to="/checkout" className="btn btn-success w-100">
               Proceed to Checkout
-            </button>
+            </Link>
           </div>
         </div>
       </div>

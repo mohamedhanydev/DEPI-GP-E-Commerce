@@ -20,6 +20,7 @@ import ReturnPolicy from "./pages/ReturnPolicy";
 import AboutUs from "./pages/AboutUs";
 import { CartProvider } from "./context/CartContext";
 import CartPage from "./components/CartPage";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="return-policy" element={<ReturnPolicy />} />
           {/* cart page */}
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="*"
             element={<h1 className="container">404: Page Not Found</h1>}
