@@ -1,139 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
-import grid1 from "../assets/grid__1.png";
-import grid4 from "../assets/grid__4.png";
-import grid6 from "../assets/grid__6.png";
-import grid11 from "../assets/grid__11.png";
-import grid9 from "../assets/grid__9.png";
-import grid13 from "../assets/grid__13.png";
-import grey1 from "../assets/grey1.png";
-import grid2 from "../assets/grid__2.png";
-import womenSweater from "../assets/women-sweater.png";
-import boyfriendPants from "../assets/boyfriend pants.jpg";
-import dress1 from "../assets/dress1.jpg";
-import leatherJacket from "../assets/leather jacket (1).jpg";
-import baby1 from "../assets/baby1.jpg";
-import baby2 from "../assets/baby2.jpg";
-
-const products_data = {
-  man: [
-    {
-      id: 1,
-      name: "W. Men Formal T-shirt",
-      price_old: 72.0,
-      price_new: 47.0,
-      image: grid1,
-      badge_new: true,
-      badge_discount: "-15%",
-      countdown: true,
-    },
-    {
-      id: 2,
-      name: "B. Pair of Blue Shoes",
-      price_new: 40.0,
-      image: grid4,
-    },
-    {
-      id: 3,
-      name: "F. Ultimate Smart Watch",
-      price_new: 47.0,
-      image: grid6,
-      badge_new: true,
-    },
-    {
-      id: 4,
-      name: "S. Denim Jacket",
-      price_old: 102.0,
-      price_new: 70.0,
-      image: grid11,
-      badge_new: true,
-      badge_discount: "-15%",
-      countdown: true,
-    },
-    {
-      id: 5,
-      name: "A. Stylist SunGlass",
-      price_new: 20.0,
-      image: grid9,
-    },
-    {
-      id: 6,
-      name: "B. Basic T-shirt",
-      price_new: 47.0,
-      image: grid13,
-    },
-    {
-      id: 7,
-      name: "B. Off White T-Shirt",
-      price_new: 47.0,
-      image: grey1,
-    },
-    {
-      id: 8,
-      name: "B. Classic shirt",
-      price_new: 72.0,
-      image: grid2,
-    },
-  ],
-  woman: [
-    {
-      id: 9,
-      name: "Women’s Knitted Sweater",
-      price_old: 100.0,
-      price_new: 80.0,
-      image: womenSweater,
-      badge_new: true,
-      badge_discount: "-20%",
-      countdown: true,
-    },
-    {
-      id: 10,
-      name: "Boyfriend Pants",
-      price_new: 60.0,
-      image: boyfriendPants,
-    },
-    {
-      id: 11,
-      name: "Summer Dress",
-      price_old: 90.0,
-      price_new: 70.0,
-      image: dress1,
-      badge_new: true,
-      badge_discount: "-20%",
-    },
-    {
-      id: 12,
-      name: "Leather Jacket",
-      price_new: 120.0,
-      image: leatherJacket,
-    },
-  ],
-  baby: [
-    {
-      id: 13,
-      name: "Baby Body Suit",
-      price_old: 25.0,
-      price_new: 45.0,
-      image: baby1,
-      badge_new: true,
-      badge_discount: "-10%",
-      countdown: true,
-    },
-    {
-      id: 14,
-      name: "Baby Body Suit",
-      price_new: 54.0,
-      image: baby2,
-    },
-  ],
-};
-
+import { fetchAllProducts } from "../api/products"; // Import the API utility
 import { toast } from "react-toastify";
 
+// Helper component for a single product card (re-using the one from Shop.jsx for consistency)
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart(product);
+    addToCart({ ...product, price: product.price_new || product.price }); // Use price_new if available, else price
     toast.success("Product added to cart!");
   };
 
@@ -142,20 +16,23 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
     toast.success("Product added to wishlist!");
   };
 
-  const formatPrice = (price) => {
-    const convertedPrice = price * (rates[currency] || 1);
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: currency,
-    }).format(convertedPrice);
-  };
+  // Use price_new if available, otherwise fallback to price
+  const displayPrice = product.price_new || product.price;
+
+  const convertedPrice = displayPrice * (rates[currency] || 1);
+
+  // Format price to US dollars
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency,
+  }).format(convertedPrice);
 
   return (
     <div className="col-lg-3 col-md-6 col-sm-6">
       <div className="product-card card border-0 rounded-0">
         <div className="image-wrapper position-relative">
           <img
-            src={product.image}
+            src={product.imageUrl || product.image} // Use imageUrl or image
             alt={product.name}
             className="product-img img-fluid"
           />
@@ -176,12 +53,13 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
           <div className="product-price">
             {product.price_old && (
               <span className="text-muted text-decoration-line-through me-2">
-                {formatPrice(product.price_old)}
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: currency,
+                }).format(product.price_old * (rates[currency] || 1))}
               </span>
             )}
-            <span className="fw-bold text-dark">
-              {formatPrice(product.price_new)}
-            </span>
+            <span className="fw-bold text-dark">{formattedPrice}</span>
           </div>
           <div className="product-rating">
             <i className="fas fa-star text-warning"></i>
@@ -198,6 +76,59 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
 
 export default function BestSelling({ currency, rates }) {
   const { addToCart } = useCart();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState("all"); // State to manage active tab
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchAllProducts();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="best-selling py-5">
+        <div className="container text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading products...</span>
+          </div>
+          <p className="mt-2">Loading products...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="best-selling py-5">
+        <div className="container text-center alert alert-danger">
+          Error loading products: <strong>{error}</strong>
+        </div>
+      </section>
+    );
+  }
+
+  // Filter products based on active tab.
+  // This is a placeholder for actual categorization/filtering from the backend.
+  const filteredProducts = products.filter(product => {
+    // For now, we'll just display all products regardless of the tab,
+    // as the backend doesn't support category filtering yet.
+    // In a real application, you'd filter by a 'category' or 'gender' property from the backend.
+    return true; 
+  });
+
   return (
     <section className="best-selling py-5">
       <div className="container">
@@ -206,49 +137,71 @@ export default function BestSelling({ currency, rates }) {
           <ul className="nav nav-tabs" id="bestSellingTabs" role="tablist">
             <li className="nav-item" role="presentation">
               <button
-                className="nav-link active"
+                className={`nav-link ${activeTab === "all" ? "active" : ""}`}
+                id="all-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#all"
+                type="button"
+                role="tab"
+                onClick={() => setActiveTab("all")}
+              >
+                All
+              </button>
+            </li>
+            {/* The original tabs for Man, Woman, Baby are removed or commented out 
+                because the current backend doesn't support this categorization.
+                You would re-introduce them and implement filtering based on 
+                actual product categories from the backend if available. */}
+            {/*
+            <li className="nav-item" role="presentation">
+              <button
+                className={`nav-link ${activeTab === "man" ? "active" : ""}`}
                 id="man-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#man"
                 type="button"
                 role="tab"
+                onClick={() => setActiveTab("man")}
               >
                 Man
               </button>
             </li>
             <li className="nav-item" role="presentation">
               <button
-                className="nav-link"
+                className={`nav-link ${activeTab === "woman" ? "active" : ""}`}
                 id="woman-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#woman"
                 type="button"
                 role="tab"
+                onClick={() => setActiveTab("woman")}
               >
                 Woman
               </button>
             </li>
             <li className="nav-item" role="presentation">
               <button
-                className="nav-link"
+                className={`nav-link ${activeTab === "baby" ? "active" : ""}`}
                 id="baby-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#baby"
                 type="button"
                 role="tab"
+                onClick={() => setActiveTab("baby")}
               >
                 Baby
               </button>
             </li>
+            */}
           </ul>
         </div>
 
         <div className="tab-content">
-          <div className="tab-pane fade show active" id="man" role="tabpanel">
+          <div className="tab-pane fade show active" id="all" role="tabpanel">
             <div className="row g-4">
-              {products_data.man.map((product) => (
+              {filteredProducts.map((product) => (
                 <ProductCard
-                  key={product.id}
+                  key={product.id || product._id} // Use id or _id
                   product={product}
                   addToCart={addToCart}
                   currency={currency}
@@ -257,34 +210,7 @@ export default function BestSelling({ currency, rates }) {
               ))}
             </div>
           </div>
-
-          <div className="tab-pane fade" id="woman" role="tabpanel">
-            <div className="row g-4">
-              {products_data.woman.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  addToCart={addToCart}
-                  currency={currency}
-                  rates={rates}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="tab-pane fade" id="baby" role="tabpanel">
-            <div className="row g-4">
-              {products_data.baby.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  addToCart={addToCart}
-                  currency={currency}
-                  rates={rates}
-                />
-              ))}
-            </div>
-          </div>
+          {/* Other tab panes (man, woman, baby) are removed or commented out for now */}
         </div>
 
         <div className="text-center mt-4">
@@ -296,3 +222,4 @@ export default function BestSelling({ currency, rates }) {
     </section>
   );
 }
+

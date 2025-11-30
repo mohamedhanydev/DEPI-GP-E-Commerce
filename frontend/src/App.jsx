@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Shop from "./pages/Shop";
 import ContactUs from "./pages/ContactUs";
+import Login from "./pages/Login"; // Import Login component
+import Register from "./pages/Register"; // Import Register component
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BlogPostPageWrapper from "./pages/BlogPostPageWrapper";
@@ -50,6 +52,8 @@ function App() {
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />
+          <Route path="/login" element={<Login />} /> {/* Login Route */}
+          <Route path="/register" element={<Register />} /> {/* Register Route */}
           {/* cart page */}
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />

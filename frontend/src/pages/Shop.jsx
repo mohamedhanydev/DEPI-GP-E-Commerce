@@ -1,54 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
-// Don't forget to import 'bootstrap/dist/css/bootstrap.min.css' in your main file
-
-// Mock data structure for e-commerce products
-const mockProducts = [
-  {
-    id: 101,
-    name: "Wireless Mechanical Keyboard",
-    description:
-      "A compact 60% mechanical keyboard with customizable RGB backlighting and tactile switches.",
-    price: 99.99,
-    imageUrl: "https://via.placeholder.com/600x400?text=Keyboard",
-    slug: "/product/wireless-keyboard",
-  },
-  {
-    id: 102,
-    name: "Noise-Cancelling Headphones",
-    description:
-      "Over-ear headphones with industry-leading noise cancellation and 30 hours of battery life.",
-    price: 149.5,
-    imageUrl: "https://via.placeholder.com/600x400?text=Headphones",
-    slug: "/product/noise-cancelling-headphones",
-  },
-  {
-    id: 103,
-    name: "4K Ultra HD Monitor",
-    description:
-      "27-inch monitor with stunning 4K resolution, 1ms response time, perfect for gaming and design.",
-    price: 349.0,
-    imageUrl: "https://via.placeholder.com/600x400?text=Monitor",
-    slug: "/product/4k-monitor",
-  },
-  {
-    id: 104,
-    name: "Portable SSD 1TB",
-    description:
-      "Fast and reliable external solid-state drive with USB-C connectivity.",
-    price: 119.99,
-    imageUrl: "https://via.placeholder.com/600x400?text=SSD",
-    slug: "/product/portable-ssd",
-  },
-];
-
+import { fetchAllProducts } from "../api/products"; // Import the API utility
 import { toast } from "react-toastify";
 
 // Helper component for a single product card
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart(product);
+    addToCart({ ...product, price: product.price_new || product.price }); // Use price_new if available, else price
     toast.success("Product added to cart!");
   };
 
@@ -57,7 +16,10 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
     toast.success("Product added to wishlist!");
   };
 
-  const convertedPrice = product.price * (rates[currency] || 1);
+  // Use price_new if available, otherwise fallback to price
+  const displayPrice = product.price_new || product.price;
+
+  const convertedPrice = displayPrice * (rates[currency] || 1);
 
   // Format price to US dollars
   const formattedPrice = new Intl.NumberFormat("en-US", {
@@ -70,7 +32,7 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
       <div className="product-card card border-0 rounded-0">
         <div className="image-wrapper position-relative">
           <img
-            src={product.imageUrl}
+            src={product.imageUrl || product.image} // Use imageUrl or image
             alt={product.name}
             className="product-img img-fluid"
           />
@@ -89,6 +51,14 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
         <div className="card-body text-center">
           <h5 className="card-title">{product.name}</h5>
           <div className="product-price">
+            {product.price_old && (
+              <span className="text-muted text-decoration-line-through me-2">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: currency,
+                }).format(product.price_old * (rates[currency] || 1))}
+              </span>
+            )}
             <span className="fw-bold text-dark">{formattedPrice}</span>
           </div>
           <div className="product-rating">
@@ -107,23 +77,27 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
 // Main Shop Page Component
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const [error, setError] = useState(null);
   const { addToCart, currency, rates } = useCart();
+
   useEffect(() => {
-    // Simulate fetching data from an API
-    const fetchProducts = async () => {
+    const getProducts = async () => {
       try {
-        // Use mock data for the example
-        setProducts(mockProducts);
+        setLoading(true); // Set loading to true before fetching
+        const data = await fetchAllProducts();
+        setProducts(data);
       } catch (err) {
         setError(err.message);
+      } finally {
+        setLoading(false); // Set loading to false after fetching (success or error)
       }
     };
 
-    fetchProducts();
+    getProducts();
   }, []);
 
-  if (!rates) {
+  if (loading || !rates) { // Check for both loading and rates
     return (
       <div className="container my-5 text-center">
         <div className="spinner-border text-primary" role="status">
@@ -137,7 +111,7 @@ const ShopPage = () => {
   if (error) {
     return (
       <div className="container my-5 text-center alert alert-danger">
-        Error loading products: **{error}**
+        Error loading products: <strong>{error}</strong>
       </div>
     );
   }

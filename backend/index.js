@@ -2,12 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const connectDB = require("./database/connect");
-const products = require("./routes/products");
-const PORT = process.env.PORT || 3500;
+const connectDB = require("./src/database/connect");
+const products = require("./src/routes/products");
+const users = require("./src/routes/users");
+const PORT = process.env.PORT || 3600;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/users", users);
 app.use("/api/products", products);
 
 async function startServer() {
