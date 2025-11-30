@@ -4,9 +4,12 @@ import ReactDOM from "react-dom/client";
 import "./styles/style.css";
 import "./styles/slider.css";
 import App from "./App.jsx";
+import { CartProvider } from "./context/CartContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </React.StrictMode>
 );

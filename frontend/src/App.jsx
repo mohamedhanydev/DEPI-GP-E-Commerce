@@ -4,6 +4,8 @@ import "./styles/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Shop from "./pages/Shop";
@@ -19,13 +21,22 @@ import AboutUs from "./pages/AboutUs";
 import { CartProvider } from "./context/CartContext";
 import CartPage from "./components/CartPage";
 
-
 function App() {
   return (
-    
     <CartProvider>
-    <Router>
-      <Header />
+      <Router>
+        <Header />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/index.html" element={<Home />} />
@@ -45,8 +56,8 @@ function App() {
             element={<h1 className="container">404: Page Not Found</h1>}
           />
         </Routes>
-      <Footer />
-    </Router>
+        <Footer />
+      </Router>
     </CartProvider>
   );
 }

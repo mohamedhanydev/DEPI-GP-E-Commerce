@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { useCart } from "../context/CartContext";
 // Don't forget to import 'bootstrap/dist/css/bootstrap.min.css' in your main file
 
 // Mock data structure for e-commerce products
@@ -42,53 +42,61 @@ const mockProducts = [
   },
 ];
 
+import { toast } from "react-toastify";
+
 // Helper component for a single product card
-const ProductCard = ({ product }) => {
-  // In a real app, this function would update a global cart state (e.g., using Context or Redux)
-  const handleAddToCart = () => {
-    console.log(`Added product ${product.name} (ID: ${product.id}) to cart!`);
-    // Example: show a temporary success notification
-    alert(`Successfully added ${product.name} to cart!`);
+const ProductCard = ({ product, addToCart, currency, rates }) => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    addToCart(product);
+    toast.success("Product added to cart!");
   };
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    toast.success("Product added to wishlist!");
+  };
+
+  const convertedPrice = product.price * (rates[currency] || 1);
 
   // Format price to US dollars
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
-  }).format(product.price);
+    currency: currency,
+  }).format(convertedPrice);
 
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 mb-4">
-      <div className="card h-100 shadow-sm border-0">
-        <img
-          src={product.imageUrl}
-          className="card-img-top"
-          alt={product.name}
-        />
-        <div className="card-body d-flex flex-column">
-          <h5 className="card-title fw-bold">{product.name}</h5>
-          <p className="card-text text-muted small flex-grow-1">
-            {product.description}
-          </p>
-
-          <div className="mt-auto pt-2">
-            <h4 className="text-primary mb-3">{formattedPrice}</h4>
-
-            {/* Product details page has been removed */}
-            <button
-              className="btn btn-outline-secondary btn-sm me-2"
-              disabled
-              title="Product details coming soon"
-            >
-              View Details
-            </button>
-
-            <button
-              onClick={handleAddToCart}
-              className="btn btn-success btn-sm"
-            >
-              Add to Cart
-            </button>
+      <div className="product-card card border-0 rounded-0">
+        <div className="image-wrapper position-relative">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="product-img img-fluid"
+          />
+          <div className="card-actions">
+            <a href="#" className="btn-action" onClick={handleAddToWishlist}>
+              <i className="far fa-heart"></i>
+            </a>
+            <a href="#" className="btn-action" onClick={handleAddToCart}>
+              <i className="fas fa-shopping-cart"></i>
+            </a>
+            <a href="#" className="btn-action">
+              <i className="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+        <div className="card-body text-center">
+          <h5 className="card-title">{product.name}</h5>
+          <div className="product-price">
+            <span className="fw-bold text-dark">{formattedPrice}</span>
+          </div>
+          <div className="product-rating">
+            <i className="fas fa-star text-warning"></i>
+            <i className="fas fa-star text-warning"></i>
+            <i className="fas fa-star text-warning"></i>
+            <i className="fas fa-star text-warning"></i>
+            <i className="far fa-star text-warning"></i>
           </div>
         </div>
       </div>
@@ -99,29 +107,23 @@ const ProductCard = ({ product }) => {
 // Main Shop Page Component
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { addToCart, currency, rates } = useCart();
   useEffect(() => {
     // Simulate fetching data from an API
     const fetchProducts = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
         // Use mock data for the example
         setProducts(mockProducts);
-
-        setLoading(false);
       } catch (err) {
         setError(err.message);
-        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
 
-  if (loading) {
+  if (!rates) {
     return (
       <div className="container my-5 text-center">
         <div className="spinner-border text-primary" role="status">
@@ -157,7 +159,13 @@ const ShopPage = () => {
       ) : (
         <div className="row">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              addToCart={addToCart}
+              currency={currency}
+              rates={rates}
+            />
           ))}
         </div>
       )}
