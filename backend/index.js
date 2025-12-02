@@ -20,7 +20,6 @@ async function startServer() {
       console.log(`Started listening to port: ${PORT}`);
     });
   } catch (error) {
-    console.error("Failed to connect to database or start server:");
     process.exit(1);
   }
 }
