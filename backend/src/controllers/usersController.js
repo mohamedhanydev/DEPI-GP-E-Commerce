@@ -21,8 +21,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
-    if (!email || !username || !password || !role)
+    const { email, password } = req.body;
+    if (!email | !password)
       return res
         .status(400)
         .json({ message: "missing email or username or password or role" });
