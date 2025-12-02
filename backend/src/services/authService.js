@@ -6,7 +6,7 @@ class ServiceError extends Error {
   }
 }
 const User = require("../models/User");
-const { hashPassword, comparePassword } = require("./hash");
+const { hashPassword, comparePassword } = require("./hashService");
 const register = async (userData) => {
   try {
     const { username, email, password, role } = userData;
