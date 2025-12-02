@@ -14,15 +14,24 @@ const register = async (req, res) => {
       role,
     });
   } catch (error) {
-    res
-      .status(error.status || 500)
-      .json({ message: `failed to create new user: ${error.message}` });
+    res.status(error.status || 500).json({ message: error.message });
   }
 };
 
 const login = async (req, res) => {
   try {
-  } catch (error) {}
+    const { username, email, password, role } = req.body;
+    if (!email || !username || !password || !role)
+      return res
+        .status(400)
+        .json({ message: "missing email or username or password or role" });
+    const loginUser = await userService.login({
+      email,
+      password,
+    });
+  } catch (error) {
+    res.status(error.status || 500).json({ message: error.message });
+  }
 };
 
 module.exports = {
