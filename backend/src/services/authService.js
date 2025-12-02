@@ -7,6 +7,7 @@ class ServiceError extends Error {
   }
 }
 const User = require("../models/User");
+const { generateToken } = require("./jwtService");
 const { hashPassword, comparePassword } = require("./hashService");
 const register = async (userData) => {
   try {
@@ -41,6 +42,11 @@ const login = async (userData) => {
     );
     if (!checkPassword)
       throw new ServiceError("invalid email or password", 400);
+    const token = generateToken({
+      userId: existingUser._id,
+      email: existingUser.email,
+    });
+    return token;
   } catch (error) {
     throw new ServiceError(
       error.message || "Login failed",
