@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3600;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/users", users);
+app.use("/api/auth/", users);
 app.use("/api/products", products);
 
 async function startServer() {
