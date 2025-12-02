@@ -1,8 +1,9 @@
 class ServiceError extends Error {
-  constructor(message, status = 500) {
+  constructor(message, status = 500, originalError = null) {
     super(message);
     this.name = "ServiceError";
     this.status = status;
+    this.originalError = originalError;
   }
 }
 const User = require("../models/User");
@@ -11,14 +12,21 @@ const register = async (userData) => {
   try {
     const { username, email, password, role } = userData;
     const existingEmail = await User.findOne({ email });
-    if (existingEmail)
-      return res.status(400).json({ message: "User already exists" });
+    if (existingEmail) throw new ServiceError("user already exists", 400);
     const hashedPassword = await hashPassword(password);
-    const newUser = new User({ username, email, hashedPassword, role });
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      role,
+    });
     await newUser.save();
-    res.json({ message: "User has been added succesfully", newUser });
   } catch (error) {
-    throw new ServiceError("failed to create new user");
+    throw new ServiceError(
+      error.message || "Registeration failed",
+      error.status,
+      error.originalError
+    );
   }
 };
 
@@ -26,17 +34,19 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
-    if (!existingUser)
-      return res.status(400).json({ message: "invalid email or password!" });
+    if (!existingUser) throw new ServiceError("invalid email or password", 400);
     const checkPassword = await comparePassword(
       password,
       existingUser.password
     );
     if (!checkPassword)
-      res.status(400).json({ message: "invalid email or password!" });
-    res.json({ message: "logged in succesfully", data: existingUser });
+      throw new ServiceError("invalid email or password", 400);
   } catch (error) {
-    throw new ServiceError("failed to login");
+    throw new ServiceError(
+      error.message || "Login failed",
+      error.status,
+      error
+    );
   }
 };
 
