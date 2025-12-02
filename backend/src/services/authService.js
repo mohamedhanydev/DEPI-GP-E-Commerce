@@ -30,9 +30,9 @@ const register = async (userData) => {
   }
 };
 
-const login = async (req, res) => {
+const login = async (userData) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = userData;
     const existingUser = await User.findOne({ email });
     if (!existingUser) throw new ServiceError("invalid email or password", 400);
     const checkPassword = await comparePassword(
