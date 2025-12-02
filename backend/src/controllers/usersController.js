@@ -13,7 +13,7 @@ const register = async (req, res) => {
       password,
       role,
     });
-    res.status(204).json({ message: "registeration done!" });
+    res.status(200).json({ message: "registeration done!" });
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message });
   }
@@ -30,7 +30,7 @@ const login = async (req, res) => {
       email,
       password,
     });
-    res.status(204).json({ message: "login done!" });
+    res.status(200).json({ message: "login done!" });
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message });
   }
