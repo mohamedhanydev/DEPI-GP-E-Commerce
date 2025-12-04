@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart({ ...product, price: product.price_new || product.price }); // Use price_new if available, else price
+    addToCart(product);
     toast.success("Product added to cart!");
   };
 
@@ -16,12 +16,10 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
     toast.success("Product added to wishlist!");
   };
 
-  // Use price_new if available, otherwise fallback to price
-  const displayPrice = product.price_new || product.price;
+  const displayPrice = product.price;
 
   const convertedPrice = displayPrice * (rates[currency] || 1);
 
-  // Format price to US dollars
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: currency,
@@ -32,7 +30,7 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
       <div className="product-card card border-0 rounded-0">
         <div className="image-wrapper position-relative">
           <img
-            src={product.imageUrl || product.image} // Use imageUrl or image
+            src={product.img} // Use product.img
             alt={product.name}
             className="product-img img-fluid"
           />
@@ -51,14 +49,6 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
         <div className="card-body text-center">
           <h5 className="card-title">{product.name}</h5>
           <div className="product-price">
-            {product.price_old && (
-              <span className="text-muted text-decoration-line-through me-2">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: currency,
-                }).format(product.price_old * (rates[currency] || 1))}
-              </span>
-            )}
             <span className="fw-bold text-dark">{formattedPrice}</span>
           </div>
           <div className="product-rating">
@@ -77,27 +67,27 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
 // Main Shop Page Component
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { addToCart, currency, rates } = useCart();
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        setLoading(true); // Set loading to true before fetching
+        setLoading(true);
         const data = await fetchAllProducts();
         setProducts(data);
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false); // Set loading to false after fetching (success or error)
+        setLoading(false);
       }
     };
 
     getProducts();
   }, []);
 
-  if (loading || !rates) { // Check for both loading and rates
+  if (loading || !rates) {
     return (
       <div className="container my-5 text-center">
         <div className="spinner-border text-primary" role="status">
@@ -134,7 +124,7 @@ const ShopPage = () => {
         <div className="row">
           {products.map((product) => (
             <ProductCard
-              key={product.id}
+              key={product._id} // Use product._id
               product={product}
               addToCart={addToCart}
               currency={currency}
