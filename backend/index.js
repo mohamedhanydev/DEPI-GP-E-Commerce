@@ -3,15 +3,16 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const connectDB = require("./src/database/connect");
-const products = require("./src/routes/productsRoute");
-const users = require("./src/routes/usersRoute");
+const productsRoute = require("./src/routes/productsRoute");
+const usersRoute = require("./src/routes/usersRoute");
+const cartRoute = require("./src/routes/cartRoute");
 const PORT = process.env.PORT || 3700;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/auth/", users);
-app.use("/api/products", products);
-
+app.use("/api/auth/", usersRoute);
+app.use("/api/products", productsRoute);
+app.use("/api/cart", cartRoute);
 async function startServer() {
   try {
     await connectDB();
