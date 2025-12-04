@@ -48,4 +48,5 @@ const profile = async (req, res) => {
 module.exports = {
   register,
   login,
+  profile,
 };
