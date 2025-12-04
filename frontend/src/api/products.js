@@ -1,6 +1,6 @@
 // frontend/src/api/products.js
 
-const API_BASE_URL = "http://localhost:3600/api";
+const API_BASE_URL = "http://localhost:3700/api";
 
 export const fetchAllProducts = async () => {
   try {
