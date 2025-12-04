@@ -1,22 +1,5 @@
 const mongoose = require("mongoose");
 
-const availableSizeSchema = new mongoose.Schema(
-  {
-    size: {
-      type: String,
-      required: true,
-      enum: ["XS", "S", "M", "L", "XL", "XXL"],
-    },
-    quantity: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 0,
-    },
-  },
-  { _id: false }
-);
-
 const productSchema = new mongoose.Schema(
   {
     img: {
@@ -34,38 +17,17 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      enum: [
-        "T-Shirts",
-        "Hoodies",
-        "Accessories",
-        "Jeans",
-        "Footwear",
-        "Denim",
-      ],
+      enum: ["T-Shirts", "Hoodies", "Accessories", "Jeans", "Footwear"],
       index: true,
     },
-    newPrice: {
+    price: {
       type: Number,
       required: true,
-      min: 0,
+      min: 1,
     },
-    oldPrice: {
+    quantity: {
       type: Number,
       required: true,
-      min: 0,
-    },
-    newPriceText: {
-      type: String,
-      required: true,
-    },
-    oldPriceText: {
-      type: String,
-      required: true,
-    },
-    availableSizes: {
-      type: [availableSizeSchema],
-      required: true,
-      default: [],
     },
   },
   {
