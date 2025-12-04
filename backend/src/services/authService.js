@@ -43,7 +43,7 @@ const login = async (userData) => {
     if (!checkPassword)
       throw new ServiceError("invalid email or password", 400);
     const token = generateToken({
-      userId: existingUser._id,
+      id: existingUser._id,
       email: existingUser.email,
     });
     return token;
