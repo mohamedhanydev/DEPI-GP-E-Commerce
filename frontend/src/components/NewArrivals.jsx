@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { fetchAllProducts } from "../api/products"; // Import the API utility
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
@@ -47,9 +48,9 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
               <i className="fas fa-shopping-cart"></i>
             </a>
 
-            <a href="#" className="btn-action">
+            <Link to={`/product/${product._id}`} className="btn-action">
               <i className="fas fa-eye"></i>
-            </a>
+            </Link>
           </div>
         </div>
 

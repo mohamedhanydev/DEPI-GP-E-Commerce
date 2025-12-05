@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { fetchAllProducts } from "../api/products"; // Import the API utility
 import { toast } from "react-toastify";
@@ -41,9 +42,9 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
             <a href="#" className="btn-action" onClick={handleAddToCart}>
               <i className="fas fa-shopping-cart"></i>
             </a>
-            <a href="#" className="btn-action">
+            <Link to={`/product/${product._id}`} className="btn-action">
               <i className="fas fa-eye"></i>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card-body text-center">
