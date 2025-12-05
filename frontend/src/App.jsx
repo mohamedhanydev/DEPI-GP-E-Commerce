@@ -24,6 +24,9 @@ import { CartProvider } from "./context/CartContext";
 import CartPage from "./components/CartPage";
 import Checkout from "./pages/Checkout";
 import ProductDetails from "./pages/ProductDetails";
+import AdminDashboard from "./pages/AdminDashboard"; // Import AdminDashboard
+import AdminProductNew from "./pages/AdminProductNew"; // Import AdminProductNew
+import AdminProductEdit from "./pages/AdminProductEdit"; // Import AdminProductEdit
 
 function App() {
   return (
@@ -59,6 +62,10 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/products/new" element={<AdminProductNew />} />
+          <Route path="/admin/products/edit/:id" element={<AdminProductEdit />} />
           <Route
             path="*"
             element={<h1 className="container">404: Page Not Found</h1>}

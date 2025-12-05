@@ -38,6 +38,7 @@ const login = async (userData) => {
     const token = generateToken({
       id: existingUser._id,
       email: existingUser.email,
+      role: existingUser.role,
     });
     return { token, username: existingUser.username };
   } catch (error) {

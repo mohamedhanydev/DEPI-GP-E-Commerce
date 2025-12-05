@@ -7,14 +7,17 @@ const {
   deleteOneProduct,
   createOneProduct,
 } = require("../controllers/productsController");
-// retrieve all products
+const auth = require("../middlwares/authMiddleware");
+const adminAuth = require("../middlwares/adminAuthMiddleware");
+
+// retrieve all products (accessible to all, or just authenticated users, for now all)
 router.get("/", getAllProducts);
-// create new product
-router.post("/", createOneProduct);
-// retrieve one product
+// create new product (admin only)
+router.post("/", auth, adminAuth, createOneProduct);
+// retrieve one product (accessible to all)
 router.get("/:id", getOneProduct);
-// update one product
-router.patch("/:id", updateOneProduct);
-// delete one product
-router.delete("/:id", deleteOneProduct);
+// update one product (admin only)
+router.patch("/:id", auth, adminAuth, updateOneProduct);
+// delete one product (admin only)
+router.delete("/:id", auth, adminAuth, deleteOneProduct);
 module.exports = router;
