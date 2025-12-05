@@ -1,14 +1,20 @@
-import logo from "../assets/logo__1.png";
+import logo from "/assets/logo__1.png";
 import { useCart } from "../context/CartContext";
+import { getToken } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 const currencies = ["USD", "EUR", "GBP"];
 
 export default function Header() {
-  const { cartItems, currency, setCurrency } = useCart();
-  const cartItemCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const { currency, setCurrency, logout, cartItemCount } = useCart();
+  const navigate = useNavigate();
+  const isAuthenticated = getToken();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <header className="header" id="main-header">
       <div className="top-header bg-dark py-2 text-white">
@@ -127,7 +133,9 @@ export default function Header() {
                   {currencies.map((c) => (
                     <li key={c}>
                       <a
-                        className={`dropdown-item ${c === currency ? "active" : ""}`}
+                        className={`dropdown-item ${
+                          c === currency ? "active" : ""
+                        }`}
                         href="#"
                         onClick={() => setCurrency(c)}
                       >
@@ -140,9 +148,18 @@ export default function Header() {
               <a href="#" className="text-dark mx-2 hide-on-collapse">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </a>
-              <a href="#" className="text-dark mx-2 hide-on-collapse">
-                <i className="fa-regular fa-user"></i>
-              </a>
+              {isAuthenticated ? (
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-link text-dark mx-2 hide-on-collapse"
+                >
+                  <i className="fa-solid fa-sign-out-alt"></i>
+                </button>
+              ) : (
+                <a href="/login" className="text-dark mx-2 hide-on-collapse">
+                  <i className="fa-regular fa-user"></i>
+                </a>
+              )}
               <a
                 href="/cart"
                 className="text-dark mx-2 position-relative hide-on-collapse"
