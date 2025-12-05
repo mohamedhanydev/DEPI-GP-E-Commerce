@@ -1,11 +1,4 @@
-class ServiceError extends Error {
-  constructor(message, status = 500, originalError = null) {
-    super(message);
-    this.name = "ServiceError";
-    this.status = status;
-    this.originalError = originalError;
-  }
-}
+const ServiceError = require("../errors/ServiceError");
 const User = require("../models/User");
 const { generateToken } = require("./jwtService");
 const { hashPassword, comparePassword } = require("./hashService");
@@ -46,7 +39,7 @@ const login = async (userData) => {
       id: existingUser._id,
       email: existingUser.email,
     });
-    return token;
+    return { token, username: existingUser.username };
   } catch (error) {
     throw new ServiceError(
       error.message || "Login failed",

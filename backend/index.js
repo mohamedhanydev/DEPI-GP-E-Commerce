@@ -11,11 +11,10 @@ const authMiddleware = require("./src/middlwares/authMiddleware");
 const PORT = process.env.PORT || 3700;
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoute);
-app.use("/api/products", productsRoute);
 app.use("/api/cart", authMiddleware, cartRoute);
-app.use("/api/users", authMiddleware, usersRoute);
+app.use("/api/products", productsRoute);
+app.use("/api/users", usersRoute);
 async function startServer() {
   try {
     await connectDB();

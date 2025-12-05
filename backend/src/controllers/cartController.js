@@ -1,4 +1,4 @@
-const cartServices = require("../services/cartService");
+const cartService = require("../services/cartService");
 const getAllCartItems = async (req, res) => {
   try {
     const allProducts = await cartService.getAllCartItems(req.user.id);
@@ -12,7 +12,9 @@ const getAllCartItems = async (req, res) => {
 const addItemToCart = async (req, res) => {
   try {
     const data = req.body;
+    console.log(data);
     const newProduct = await cartService.addItemToCart(req.user.id, data);
+    console.log(req.user);
     res.status(200).send({ status: "OK", data: newProduct });
   } catch (error) {
     res
@@ -24,7 +26,7 @@ const deleteOneCartItem = async (req, res) => {
   try {
     const deletedProduct = await cartService.deleteOneCartItem(
       req.user.id,
-      req.body.itemId
+      req.params.productId
     );
     res.status(200).send({ status: "OK", data: deletedProduct });
   } catch (error) {

@@ -8,5 +8,5 @@ router
   .get(cartController.getAllCartItems)
   .delete(cartController.deleteAllCartItems);
 
-router.route("/:itemId").delete(cartController.deleteOneCartItem);
+router.route("/:productId").delete(cartController.deleteOneCartItem);
 module.exports = router;

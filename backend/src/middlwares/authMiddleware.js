@@ -17,12 +17,10 @@ const auth = async (req, res, next) => {
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError")
-      return res
-        .status(401)
-        .json({
-          message: "Session Expired: please log in again",
-          error: error.name,
-        });
+      return res.status(401).json({
+        message: "Session Expired: please log in again",
+        error: error.name,
+      });
     return res.status(403).json({
       message: "Access Denied: Invalid",
       error: error.name,

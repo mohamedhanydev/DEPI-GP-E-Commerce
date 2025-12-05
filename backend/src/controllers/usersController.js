@@ -1,13 +1,13 @@
-const userService = require("../services/authService");
+const authService = require("../services/authService");
 
 const register = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
-    if (!email || !username || !password || !role)
+    const { username, email, password, role = "user" } = req.body;
+    if (!email || !username || !password)
       return res
         .status(400)
         .json({ message: "missing email or username or password or role" });
-    const registerUser = await userService.register({
+    const registerUser = await authService.register({
       username,
       email,
       password,
@@ -26,18 +26,18 @@ const login = async (req, res) => {
       return res
         .status(400)
         .json({ message: "missing email or username or password or role" });
-    const token = await userService.login({
+    const credentials = await authService.login({
       email,
       password,
     });
-    res.status(200).json({ message: "login done!", token });
+    res.status(200).json({ message: "login done!", credentials });
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message });
   }
 };
 const profile = async (req, res) => {
   try {
-    const currentUser = await userService.getUserData(req.user.id);
+    const currentUser = await authService.getUserData(req.user.id);
     res
       .status(200)
       .json({ message: "retrieved user successfully", user: currentUser });

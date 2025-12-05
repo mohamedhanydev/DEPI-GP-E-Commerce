@@ -7,7 +7,7 @@ const getAllCartItems = async (userId) => {
   // Find cart for this user and populate product details (name, img)
   const cart = await Cart.findOne({ user: userId }).populate({
     path: "cartItems.product",
-    select: "name img price", // Only get fields we need
+    select: "name img price",
   });
 
   if (!cart) {
