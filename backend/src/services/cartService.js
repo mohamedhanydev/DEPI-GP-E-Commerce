@@ -1,6 +1,7 @@
+const ServiceError = require("../errors/ServiceError");
 const Cart = require("../models/Cart");
 const Product = require("../models/Product");
-
+const mongoose = require("mongoose");
 // 1. Get Logged In User's Cart
 const getAllCartItems = async (userId) => {
   // Find cart for this user and populate product details (name, img)
@@ -20,18 +21,14 @@ const getAllCartItems = async (userId) => {
 // 2. Add Item to Cart
 const addItemToCart = async (userId, data) => {
   const { productId, quantity } = data;
-
-  // A. Find the product to get the REAL price (security check)
   const product = await Product.findById(productId);
+  console.log(product);
   if (!product) {
-    const error = new Error("Product not found");
-    error.status = 404;
-    throw error;
+    throw new ServiceError("Product not found", 404);
   }
 
-  const price = product.price; // Use database price, never client price
+  const price = product.price;
 
-  // B. Check if user already has a cart
   let cart = await Cart.findOne({ user: userId });
 
   if (!cart) {
@@ -66,19 +63,16 @@ const addItemToCart = async (userId, data) => {
 };
 
 // 3. Remove Specific Item
-const deleteOneCartItem = async (userId, itemId) => {
+const deleteOneCartItem = async (userId, productId) => {
   const cart = await Cart.findOne({ user: userId });
 
   if (!cart) {
-    const error = new Error("Cart not found");
-    error.status = 404;
-    throw error;
+    throw new ServiceError("Cart not found", 404);
   }
 
-  // Filter out the item to be deleted
-  // Note: itemId here refers to the _id of the item INSIDE the array, not the product ID
+  // Find the index of the item with the given productId
   const itemIndex = cart.cartItems.findIndex(
-    (item) => item._id.toString() === itemId
+    (item) => item.product.toString() === productId
   );
 
   if (itemIndex > -1) {
@@ -86,9 +80,7 @@ const deleteOneCartItem = async (userId, itemId) => {
     calcTotalCartPrice(cart); // Recalc total
     await cart.save();
   } else {
-    const error = new Error("Item not found in cart");
-    error.status = 404;
-    throw error;
+    throw new ServiceError("Item not found in cart", 404);
   }
 
   return cart;
@@ -96,8 +88,6 @@ const deleteOneCartItem = async (userId, itemId) => {
 
 // 4. Clear Entire Cart
 const deleteAllCartItems = async (userId) => {
-  // We don't delete the document, we just empty the array and reset price
-  // This keeps the _id of the cart stable
   const cart = await Cart.findOne({ user: userId });
 
   if (!cart) return null;
@@ -116,7 +106,7 @@ const calcTotalCartPrice = (cart) => {
     totalPrice += item.quantity * item.price;
   });
   cart.totalCartPrice = totalPrice;
-  cart.totalPriceAfterDiscount = undefined; // Reset discount if you have that feature
+  cart.totalPriceAfterDiscount = undefined;
 };
 
 module.exports = {
