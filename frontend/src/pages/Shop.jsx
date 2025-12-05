@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
+    console.log(product);
     addToCart(product);
     toast.success("Product added to cart!");
   };
@@ -30,7 +31,7 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
       <div className="product-card card border-0 rounded-0">
         <div className="image-wrapper position-relative">
           <img
-            src={product.img} // Use product.img
+            src={product.imageUrl}
             alt={product.name}
             className="product-img img-fluid"
           />
@@ -76,6 +77,7 @@ const ShopPage = () => {
       try {
         setLoading(true);
         const data = await fetchAllProducts();
+        console.log(data);
         setProducts(data);
       } catch (err) {
         setError(err.message);

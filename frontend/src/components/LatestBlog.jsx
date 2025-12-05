@@ -1,6 +1,6 @@
-import lb1 from "../assets/Lb-1.jpg";
-import lb2 from "../assets/Lb-2.jpg";
-import lb3 from "../assets/Lb-3.jpg";
+import lb1 from "/assets/Lb-1.jpg";
+import lb2 from "/assets/Lb-2.jpg";
+import lb3 from "/assets/Lb-3.jpg";
 
 export default function LatestBlog() {
   return (
@@ -11,11 +11,7 @@ export default function LatestBlog() {
       <div className="lb-grid">
         <article className="lb-card">
           <a className="lb-thumb" href="#">
-            <img
-              className="lb-img"
-              src={lb1}
-              alt="men's Fashion Trends"
-            />
+            <img className="lb-img" src={lb1} alt="men's Fashion Trends" />
           </a>
           <div className="lb-body">
             <div className="lb-meta">
@@ -36,11 +32,7 @@ export default function LatestBlog() {
         </article>
         <article className="lb-card">
           <a className="lb-thumb" href="#">
-            <img
-              className="lb-img"
-              src={lb3}
-              alt="men's Fashion Trends"
-            />
+            <img className="lb-img" src={lb3} alt="men's Fashion Trends" />
           </a>
           <div className="lb-body">
             <div className="lb-meta">
@@ -61,11 +53,7 @@ export default function LatestBlog() {
         </article>
         <article className="lb-card">
           <a className="lb-thumb" href="#">
-            <img
-              className="lb-img"
-              src={lb2}
-              alt="women's Fashion Trends"
-            />
+            <img className="lb-img" src={lb2} alt="women's Fashion Trends" />
           </a>
           <div className="lb-body">
             <div className="lb-meta">
