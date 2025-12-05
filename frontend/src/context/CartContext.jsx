@@ -5,6 +5,8 @@ import {
   removeItemFromCart,
   clearCartAPI,
   fetchCart,
+  increaseItemInCart,
+  decreaseItemInCart,
 } from "../api/cart";
 
 export const CartContext = createContext();
@@ -25,7 +27,9 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (!token) {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      setCartItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
+      setCartItemCount(
+        cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
     }
   }, [cartItems, token]);
 
@@ -47,15 +51,19 @@ export const CartProvider = ({ children }) => {
         .then((cart) => {
           if (cart) {
             setcartItems(cart.cartItems);
-            setCartItemCount(cart.cartItems.reduce((total, item) => total + item.quantity, 0));
+            setCartItemCount(
+              cart.cartItems.reduce((total, item) => total + item.quantity, 0)
+            );
           }
         })
         .catch((error) => {
           console.error("Error fetching cart on initial load:", error);
         });
     } else {
-		setCartItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
-	}
+      setCartItemCount(
+        cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    }
   }, [token]);
 
   const addToCart = async (product) => {
@@ -69,7 +77,9 @@ export const CartProvider = ({ children }) => {
       console.log(productId);
       const updatedCart = await addItemToCart(productId, 1);
       setcartItems(updatedCart.cartItems);
-      setCartItemCount(updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0));
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
     } else {
       setcartItems((prev) => {
         const itemExists = prev.find((item) => item._id === product._id);
@@ -90,7 +100,9 @@ export const CartProvider = ({ children }) => {
     if (token) {
       const updatedCart = await removeItemFromCart(productId);
       setcartItems(updatedCart.cartItems);
-      setCartItemCount(updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0));
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
     } else {
       setcartItems((prev) => prev.filter((p) => p._id !== productId));
     }
@@ -117,22 +129,40 @@ export const CartProvider = ({ children }) => {
     setCartItemCount(0);
   };
 
-  const increaseQuantity = (productId) => {
-    setcartItems((prev) =>
-      prev.map((item) =>
-        item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  const increaseQuantity = async (productId) => {
+    if (token) {
+      const updatedCart = await increaseItemInCart(productId);
+      setcartItems(updatedCart.cartItems);
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    } else {
+      setcartItems((prev) =>
+        prev.map((item) =>
+          item._id === productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    }
   };
 
-  const decreaseQuantity = (productId) => {
-    setcartItems((prev) =>
-      prev.map((item) =>
-        item._id === productId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
+  const decreaseQuantity = async (productId) => {
+    if (token) {
+      const updatedCart = await decreaseItemInCart(productId);
+      setcartItems(updatedCart.cartItems);
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    } else {
+      setcartItems((prev) =>
+        prev.map((item) =>
+          item._id === productId && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
+    }
   };
 
   return (
@@ -164,3 +194,4 @@ export const useCart = () => {
   }
   return context;
 };
+

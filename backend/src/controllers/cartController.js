@@ -45,9 +45,40 @@ const deleteAllCartItems = async (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
+
+const increaseItemInCart = async (req, res) => {
+  try {
+    const cart = await cartService.increaseItemInCart(
+      req.user.id,
+      req.params.productId
+    );
+    res.status(200).send({ status: "OK", data: cart });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
+};
+
+const decreaseItemInCart = async (req, res) => {
+  try {
+    const cart = await cartService.decreaseItemInCart(
+      req.user.id,
+      req.params.productId
+    );
+    res.status(200).send({ status: "OK", data: cart });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", message: error.message });
+  }
+};
+
 module.exports = {
   getAllCartItems,
   addItemToCart,
   deleteOneCartItem,
   deleteAllCartItems,
+  increaseItemInCart,
+  decreaseItemInCart,
 };

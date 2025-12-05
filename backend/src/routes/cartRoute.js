@@ -9,4 +9,6 @@ router
   .delete(cartController.deleteAllCartItems);
 
 router.route("/:productId").delete(cartController.deleteOneCartItem);
+router.route("/increase/:productId").put(cartController.increaseItemInCart);
+router.route("/decrease/:productId").delete(cartController.decreaseItemInCart);
 module.exports = router;

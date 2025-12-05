@@ -52,3 +52,29 @@ export const clearCartAPI = async () => {
     throw error.response ? new Error(error.response.data.message) : error;
   }
 };
+
+export const increaseItemInCart = async (productId) => {
+  try {
+    const response = await api.put(`/cart/increase/${productId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error(
+      "Error increasing item in cart:",
+      error.response ? error.response.data : error.message
+    );
+    throw error.response ? new Error(error.response.data.message) : error;
+  }
+};
+
+export const decreaseItemInCart = async (productId) => {
+  try {
+    const response = await api.delete(`/cart/decrease/${productId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error(
+      "Error decreasing item in cart:",
+      error.response ? error.response.data : error.message
+    );
+    throw error.response ? new Error(error.response.data.message) : error;
+  }
+};
