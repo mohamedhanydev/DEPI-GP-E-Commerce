@@ -23,10 +23,23 @@ export const loginUser = async (credentials) => {
   }
 };
 
+
 export const getToken = () => {
   return localStorage.getItem("token");
 };
 
 export const logoutUser = () => {
   localStorage.removeItem("token");
+};
+
+export const getCurrentUser = () => {
+  const token = getToken();
+  if (!token) return null;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return { id: payload.id, role: payload.role };
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
 };
