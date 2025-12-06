@@ -123,7 +123,7 @@ export default function Footer() {
                   <a href="/return-policy">Return Policy</a>
                 </li>
                 <li>
-                  <a href="#">FAQs</a>
+                  <a href="/faqs">FAQs</a>
                 </li>
               </ul>
             </div>

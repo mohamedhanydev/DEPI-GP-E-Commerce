@@ -27,6 +27,7 @@ import ProductDetails from "./pages/ProductDetails";
 import AdminDashboard from "./pages/AdminDashboard"; // Import AdminDashboard
 import AdminProductNew from "./pages/AdminProductNew"; // Import AdminProductNew
 import AdminProductEdit from "./pages/AdminProductEdit"; // Import AdminProductEdit
+import FAQs from "./pages/FAQs";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />
+          <Route path="/faqs" element={<FAQs />} />
           <Route path="/login" element={<Login />} /> {/* Login Route */}
           <Route path="/register" element={<Register />} /> {/* Register Route */}
           {/* cart page */}
