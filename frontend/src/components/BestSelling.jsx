@@ -205,7 +205,7 @@ export default function BestSelling({ currency, rates }) {
         </div>
 
         <div className="text-center mt-4">
-          <a href="#" className="btn btn-primary px-4">
+          <a href="/Shop" className="btn btn-primary px-4">
             View All
           </a>
         </div>
