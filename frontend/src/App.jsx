@@ -28,6 +28,8 @@ import AdminDashboard from "./pages/AdminDashboard"; // Import AdminDashboard
 import AdminProductNew from "./pages/AdminProductNew"; // Import AdminProductNew
 import AdminProductEdit from "./pages/AdminProductEdit"; // Import AdminProductEdit
 import FAQs from "./pages/FAQs";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
+import CheckoutCancel from "./pages/CheckoutCancel";
 
 function App() {
   return (
@@ -63,6 +65,8 @@ function App() {
           {/* cart page */}
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout-success" element={<CheckoutSuccess />} />
+          <Route path="/checkout-cancel" element={<CheckoutCancel />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminDashboard />} />

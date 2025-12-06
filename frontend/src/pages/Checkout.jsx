@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "../App.css";
 import { useCart } from "../context/CartContext";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function Checkout() {
   const { cartItems, currency, rates } = useCart();
@@ -73,13 +76,53 @@ export default function Checkout() {
   };
 
   // Submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      alert("Form is valid — ready to send to backend!");
+      if (formData.payment === "stripe") {
+        try {
+          const stripe = await stripePromise;
+          const token = localStorage.getItem("token");
+          const response = await fetch(
+            "http://localhost:3700/api/stripe/create-checkout-session",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                cartItems: cartItems,
+                customer: {
+                  email: formData.email,
+                },
+              }),
+            }
+          );
+
+          const session = await response.json();
+
+          if (session.url) {
+            window.location.href = session.url;
+          } else {
+            setErrors({
+              ...errors,
+              payment: "Failed to create checkout session.",
+            });
+          }
+        } catch (error) {
+          console.error("Error during stripe checkout:", error);
+          setErrors({
+            ...errors,
+            payment: "An error occurred during checkout.",
+          });
+        }
+      } else {
+        alert("Form is valid — ready to send to backend!");
+      }
     }
   };
 
@@ -348,6 +391,16 @@ export default function Checkout() {
                     onChange={(e) => handleChange("payment", e.target.value)}
                   />{" "}
                   Paypal
+                </label>
+                <br />
+                <label>
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="stripe"
+                    onChange={(e) => handleChange("payment", e.target.value)}
+                  />{" "}
+                  Credit Card (Stripe)
                 </label>
 
                 {errors.payment && (
