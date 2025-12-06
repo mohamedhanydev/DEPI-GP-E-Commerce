@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { loginUser } from "../api/auth";
+import { useCart } from "../context/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
@@ -8,15 +9,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
+  const { login } = useCart();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const user = await loginUser({ email, password });
-      toast.success(`Welcome, ${user.username}!`);
-      // In a real app, you'd store a token or user info in context/localStorage
-      console.log("Logged in user:", user); 
+      const data = await loginUser({ email, password });
+      toast.success(`Welcome, ${data.credentials.username}!`);
+      login(data.credentials.token);
       navigate("/"); // Redirect to home page after successful login
     } catch (error) {
       toast.error(error.message || "Login failed.");

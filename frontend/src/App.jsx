@@ -23,6 +23,18 @@ import AboutUs from "./pages/AboutUs";
 import { CartProvider } from "./context/CartContext";
 import CartPage from "./components/CartPage";
 import Checkout from "./pages/Checkout";
+import ProductDetails from "./pages/ProductDetails";
+import AdminDashboard from "./pages/AdminDashboard"; // Import AdminDashboard
+import AdminProductNew from "./pages/AdminProductNew"; // Import AdminProductNew
+import AdminProductEdit from "./pages/AdminProductEdit"; // Import AdminProductEdit
+import AdminProductPage from "./pages/AdminProductPage";
+import AdminUserPage from "./pages/AdminUserPage";
+import AdminOrderPage from "./pages/AdminOrderPage";
+import AdminOrderDetailsPage from "./pages/AdminOrderDetailsPage";
+import PrivateRoute from "./components/PrivateRoute";
+import FAQs from "./pages/FAQs";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
+import CheckoutCancel from "./pages/CheckoutCancel";
 
 function App() {
   return (
@@ -52,11 +64,25 @@ function App() {
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />
+          <Route path="/faqs" element={<FAQs />} />
           <Route path="/login" element={<Login />} /> {/* Login Route */}
           <Route path="/register" element={<Register />} /> {/* Register Route */}
           {/* cart page */}
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout-success" element={<CheckoutSuccess />} />
+          <Route path="/checkout-cancel" element={<CheckoutCancel />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          {/* Admin Routes */}
+          <Route path="/admin" element={<PrivateRoute />}>
+            <Route path="" element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProductPage />} />
+            <Route path="products/new" element={<AdminProductNew />} />
+            <Route path="products/edit/:id" element={<AdminProductEdit />} />
+            <Route path="users" element={<AdminUserPage />} />
+            <Route path="orders" element={<AdminOrderPage />} />
+            <Route path="orders/:id" element={<AdminOrderDetailsPage />} />
+          </Route>
           <Route
             path="*"
             element={<h1 className="container">404: Page Not Found</h1>}

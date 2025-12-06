@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const ServiceError = require('../errors/ServiceError');
 
 const createUser = async (userData) => {
     try {
@@ -6,7 +7,7 @@ const createUser = async (userData) => {
         await newUser.save();
         return newUser;
     } catch (error) {
-        throw { status: 500, message: error.message };
+        throw new ServiceError(error.message, 500);
     }
 };
 
@@ -15,7 +16,7 @@ const findUserByEmail = async (email) => {
         const user = await User.findOne({ email });
         return user;
     } catch (error) {
-        throw { status: 500, message: error.message };
+        throw new ServiceError(error.message, 500);
     }
 };
 
