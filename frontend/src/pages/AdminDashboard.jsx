@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllProducts, deleteProduct, createProduct, updateProduct } from '../api/products'; // Will create these API calls
 import { Link } from 'react-router-dom';
+import '../styles/admin.css';
+import AdminSidebar from '../components/AdminSidebar';
 
 const AdminDashboard = () => {
     const [products, setProducts] = useState([]);
@@ -44,36 +46,43 @@ const AdminDashboard = () => {
 
     return (
         <div className="container mt-5">
-            <h2 className="mb-4">Admin Dashboard</h2>
-            <p>Total Products: {products.length}</p>
+            <div className="row">
+                <div className="col-md-3">
+                    <AdminSidebar />
+                </div>
+                <div className="col-md-9">
+                    <h2 className="mb-4">Admin Dashboard</h2>
+                    <p>Total Products: {products.length}</p>
 
-            <Link to="/admin/products/new" className="btn btn-primary mb-3">Add New Product</Link>
+                    <Link to="/admin/products/new" className="btn btn-primary mb-3">Add New Product</Link>
 
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map(product => (
-                        <tr key={product._id}>
-                            <td>{product._id}</td>
-                            <td>{product.name}</td>
-                            <td>${product.price.toFixed(2)}</td>
-                            <td>{product.category}</td>
-                            <td>
-                                <Link to={`/admin/products/edit/${product._id}`} className="btn btn-sm btn-info me-2">Edit</Link>
-                                <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {products.map(product => (
+                                <tr key={product._id}>
+                                    <td>{product._id}</td>
+                                    <td>{product.name}</td>
+                                    <td>${product.price.toFixed(2)}</td>
+                                    <td>{product.category}</td>
+                                    <td>
+                                        <Link to={`/admin/products/edit/${product._id}`} className="btn btn-sm btn-info me-2">Edit</Link>
+                                        <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 };

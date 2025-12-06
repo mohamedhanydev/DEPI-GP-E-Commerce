@@ -121,8 +121,6 @@ const CartPage = () => {
           )}
         </tbody>
       </table>
-
-      {/* أزرار تحت الجدول */}
       <div className="d-flex justify-content-between mb-4">
         <a href="/shop" className="btn btn-secondary">
           Continue Shopping
@@ -135,10 +133,7 @@ const CartPage = () => {
           </button>
         </div>
       </div>
-
-      {/* 3 كرايت زي اللي في الصورة */}
       <div className="row">
-        {/* Estimate Shipping */}
         <div className="col-md-4">
           <div className="p-3 border rounded">
             <h5>Estimate Shipping And Tax</h5>
