@@ -1,14 +1,36 @@
-import logo from "../assets/logo__1.png";
 import { useCart } from "../context/CartContext";
+import { getToken, getCurrentUser } from "../api/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const currencies = ["USD", "EUR", "GBP"];
 
 export default function Header() {
-  const { cartItems, currency, setCurrency } = useCart();
-  const cartItemCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const { currency, setCurrency, logout, cartItemCount } = useCart();
+  const navigate = useNavigate();
+  const isAuthenticated = getToken();
+  const user = getCurrentUser();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.getElementById("main-header");
+      if (window.scrollY > 100) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <header className="header" id="main-header">
       <div className="top-header bg-dark py-2 text-white">
@@ -72,9 +94,9 @@ export default function Header() {
       </div>
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
-          <a className="navbar-brand" href="index.html">
-            <img src={logo} alt="DEPI-GP Logo" className="img-fluid" />
-          </a>
+          <Link className="navbar-brand" to="/">
+            <img src="/assets/logo__1.png" alt="DEPI-GP Logo" className="img-fluid" />
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -89,29 +111,36 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/shop">
+                <Link className="nav-link" to="/shop">
                   Shop
-                </a>
+                </Link>
               </li>
+              {user && user.role === "admin" && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/admin">
+                    Admin
+                  </Link>
+                </li>
+              )}
               <li className="nav-item">
-                <a className="nav-link" href="/about-us">
+                <Link className="nav-link" to="/about-us">
                   About
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/Blog">
+                <Link className="nav-link" to="/Blog">
                   Blog
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contact-us">
+                <Link className="nav-link" to="/contact-us">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="more-details d-flex align-items-center">
@@ -127,7 +156,9 @@ export default function Header() {
                   {currencies.map((c) => (
                     <li key={c}>
                       <a
-                        className={`dropdown-item ${c === currency ? "active" : ""}`}
+                        className={`dropdown-item ${
+                          c === currency ? "active" : ""
+                        }`}
                         href="#"
                         onClick={() => setCurrency(c)}
                       >
@@ -138,13 +169,22 @@ export default function Header() {
                 </ul>
               </div>
               <a href="#" className="text-dark mx-2 hide-on-collapse">
-                <i className="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-inspect"></i>
               </a>
-              <a href="#" className="text-dark mx-2 hide-on-collapse">
-                <i className="fa-regular fa-user"></i>
-              </a>
-              <a
-                href="/cart"
+              {isAuthenticated ? (
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-link text-dark mx-2 hide-on-collapse"
+                >
+                  <i className="fa-solid fa-sign-out-alt"></i>
+                </button>
+              ) : (
+                <Link to="/login" className="text-dark mx-2 hide-on-collapse">
+                  <i className="fa-regular fa-user"></i>
+                </Link>
+              )}
+              <Link
+                to="/cart"
                 className="text-dark mx-2 position-relative hide-on-collapse"
               >
                 <i className="fa-solid fa-bag-shopping"></i>
@@ -152,7 +192,7 @@ export default function Header() {
                   {cartItemCount}
                   <span className="visually-hidden">unread messages</span>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -160,3 +200,4 @@ export default function Header() {
     </header>
   );
 }
+

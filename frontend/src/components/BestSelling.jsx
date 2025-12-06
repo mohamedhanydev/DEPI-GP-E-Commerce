@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { fetchAllProducts } from "../api/products"; // Import the API utility
 import { toast } from "react-toastify";
@@ -7,7 +8,7 @@ import { toast } from "react-toastify";
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart({ ...product, price: product.price_new || product.price }); // Use price_new if available, else price
+    addToCart(product);
     toast.success("Product added to cart!");
   };
 
@@ -16,23 +17,21 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
     toast.success("Product added to wishlist!");
   };
 
-  // Use price_new if available, otherwise fallback to price
-  const displayPrice = product.price_new || product.price;
+  const displayPrice = product.price;
 
   const convertedPrice = displayPrice * (rates[currency] || 1);
 
-  // Format price to US dollars
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: currency,
   }).format(convertedPrice);
-
+  console.log(product);
   return (
     <div className="col-lg-3 col-md-6 col-sm-6">
       <div className="product-card card border-0 rounded-0">
         <div className="image-wrapper position-relative">
           <img
-            src={product.imageUrl || product.image} // Use imageUrl or image
+            src={product.imageUrl}
             alt={product.name}
             className="product-img img-fluid"
           />
@@ -43,22 +42,14 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
             <a href="#" className="btn-action" onClick={handleAddToCart}>
               <i className="fas fa-shopping-cart"></i>
             </a>
-            <a href="#" className="btn-action">
+            <Link to={`/product/${product._id}`} className="btn-action">
               <i className="fas fa-eye"></i>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card-body text-center">
           <h5 className="card-title">{product.name}</h5>
           <div className="product-price">
-            {product.price_old && (
-              <span className="text-muted text-decoration-line-through me-2">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: currency,
-                }).format(product.price_old * (rates[currency] || 1))}
-              </span>
-            )}
             <span className="fw-bold text-dark">{formattedPrice}</span>
           </div>
           <div className="product-rating">
@@ -122,11 +113,11 @@ export default function BestSelling({ currency, rates }) {
 
   // Filter products based on active tab.
   // This is a placeholder for actual categorization/filtering from the backend.
-  const filteredProducts = products.filter(product => {
+  const filteredProducts = products.filter((product) => {
     // For now, we'll just display all products regardless of the tab,
     // as the backend doesn't support category filtering yet.
     // In a real application, you'd filter by a 'category' or 'gender' property from the backend.
-    return true; 
+    return true;
   });
 
   return (
@@ -222,4 +213,3 @@ export default function BestSelling({ currency, rates }) {
     </section>
   );
 }
-

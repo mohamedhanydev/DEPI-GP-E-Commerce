@@ -1,4 +1,4 @@
-import banner3 from "../assets/banner__3.png";
+import banner3 from "/assets/banner__3.png";
 
 export default function BestOffer() {
   return (

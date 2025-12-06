@@ -1,24 +1,37 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { getToken, logoutUser } from "../api/auth";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  clearCartAPI,
+  fetchCart,
+  increaseItemInCart,
+  decreaseItemInCart,
+} from "../api/cart";
 
-// 1) نعمل context فاضية
-// eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext();
 
-// 2) نعمل provider اللي هيمسك حالة الكارت
 export const CartProvider = ({ children }) => {
   const [cartItems, setcartItems] = useState(() => {
     const savedCart = localStorage.getItem("cartItems");
     return savedCart ? JSON.parse(savedCart) : [];
-  }); // الكارت هيتخزن هنا
+  });
   const [currency, setCurrency] = useState(() => {
     const savedCurrency = localStorage.getItem("currency");
     return savedCurrency ? JSON.parse(savedCurrency) : "USD";
   });
   const [rates, setRates] = useState(null);
+  const [token, setToken] = useState(getToken());
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (!token) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      setCartItemCount(
+        cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    }
+  }, [cartItems, token]);
 
   useEffect(() => {
     localStorage.setItem("currency", JSON.stringify(currency));
@@ -28,56 +41,131 @@ export const CartProvider = ({ children }) => {
     fetch("https://open.exchangerate-api.com/v6/latest/USD")
       .then((res) => res.json())
       .then((data) => {
-        console.log("API Response:", data);
         setRates(data.rates);
       });
   }, []);
 
-  // دالة إضافة منتج للكارت
-  const addToCart = (product) => {
-    setcartItems((prev) => {
-      const itemExists = prev.find((item) => item.id === product.id);
-      if (itemExists) {
-        return prev.map((item) =>
-          item.id === product.id
+  useEffect(() => {
+    if (token) {
+      fetchCart()
+        .then((cart) => {
+          if (cart) {
+            setcartItems(cart.cartItems);
+            setCartItemCount(
+              cart.cartItems.reduce((total, item) => total + item.quantity, 0)
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching cart on initial load:", error);
+        });
+    } else {
+      setCartItemCount(
+        cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    }
+  }, [token]);
+
+  const addToCart = async (product) => {
+    console.log(product);
+    if (token) {
+      const productId = product._id;
+      if (!productId) {
+        console.error("Product has no ID", product);
+        return;
+      }
+      console.log(productId);
+      const updatedCart = await addItemToCart(productId, 1);
+      console.log(updatedCart);
+      setcartItems(updatedCart.cartItems);
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    } else {
+      setcartItems((prev) => {
+        const itemExists = prev.find((item) => item._id === product._id);
+        if (itemExists) {
+          return prev.map((item) =>
+            item._id === product._id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
+        } else {
+          return [...prev, { ...product, quantity: 1 }];
+        }
+      });
+    }
+  };
+
+  const removeFromCart = async (productId) => {
+    if (token) {
+      const updatedCart = await removeItemFromCart(productId);
+      setcartItems(updatedCart.cartItems);
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    } else {
+      setcartItems((prev) => prev.filter((p) => p._id !== productId));
+    }
+  };
+
+  const clearCart = async () => {
+    if (token) {
+      await clearCartAPI();
+      setcartItems([]);
+      setCartItemCount(0);
+    } else {
+      setcartItems([]);
+    }
+  };
+
+  const login = (newToken) => {
+    setToken(newToken);
+  };
+
+  const logout = () => {
+    logoutUser();
+    setToken(null);
+    setcartItems([]);
+    setCartItemCount(0);
+  };
+
+  const increaseQuantity = async (productId) => {
+    if (token) {
+      const updatedCart = await increaseItemInCart(productId);
+      setcartItems(updatedCart.cartItems);
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    } else {
+      setcartItems((prev) =>
+        prev.map((item) =>
+          item._id === productId
             ? { ...item, quantity: item.quantity + 1 }
             : item
-        );
-      } else {
-        return [...prev, { ...product, quantity: 1 }];
-      }
-    });
+        )
+      );
+    }
   };
 
-  // لو حابين نمسح منتج
-  const removeFromCart = (productId) => {
-    setcartItems((prev) => prev.filter((p) => p.id !== productId));
+  const decreaseQuantity = async (productId) => {
+    if (token) {
+      const updatedCart = await decreaseItemInCart(productId);
+      setcartItems(updatedCart.cartItems);
+      setCartItemCount(
+        updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)
+      );
+    } else {
+      setcartItems((prev) =>
+        prev.map((item) =>
+          item._id === productId && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
+    }
   };
 
-  // لو عايزين نفرّغ الكارت كله
-  const clearCart = () => setcartItems([]);
-
-  const increaseQuantity = (productId) => {
-    setcartItems((prev) =>
-      prev.map((item) =>
-        item.id === productId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
-
-  const decreaseQuantity = (productId) => {
-    setcartItems((prev) =>
-      prev.map((item) =>
-        item.id === productId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
-
-  // البيانات اللي هنشاركها مع كل مكان في الموقع
   return (
     <CartContext.Provider
       value={{
@@ -90,6 +178,9 @@ export const CartProvider = ({ children }) => {
         currency,
         setCurrency,
         rates,
+        login,
+        logout,
+        cartItemCount,
       }}
     >
       {children}
@@ -97,7 +188,6 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
@@ -105,4 +195,3 @@ export const useCart = () => {
   }
   return context;
 };
-

@@ -2,27 +2,30 @@ import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { fetchAllProducts } from "../api/products"; // Import the API utility
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart({ ...product, price: product.price_new || product.price }); // Use price_new if available, else price
+
+    addToCart(product);
+
     toast.success("Product added to cart!");
   };
 
   const handleAddToWishlist = (e) => {
     e.preventDefault();
+
     toast.success("Product added to wishlist!");
   };
 
-  // Use price_new if available, otherwise fallback to price
-  const displayPrice = product.price_new || product.price;
+  const displayPrice = product.price;
 
   const convertedPrice = displayPrice * (rates[currency] || 1);
 
-  // Format price to US dollars
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
+
     currency: currency,
   }).format(convertedPrice);
 
@@ -31,42 +34,42 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
       <div className="product-card card border-0 rounded-0">
         <div className="image-wrapper position-relative">
           <img
-            src={product.imageUrl || product.image} // Use imageUrl or image
+            src={product.imageUrl}
             alt={product.name}
             className="product-img img-fluid"
           />
+
           <div className="card-actions">
             <a href="#" className="btn-action" onClick={handleAddToWishlist}>
               <i className="far fa-heart"></i>
             </a>
+
             <a href="#" className="btn-action" onClick={handleAddToCart}>
               <i className="fas fa-shopping-cart"></i>
             </a>
-            <a href="#" className="btn-action">
+
+            <Link to={`/product/${product._id}`} className="btn-action">
               <i className="fas fa-eye"></i>
-            </a>
+            </Link>
           </div>
         </div>
+
         <div className="card-body text-center">
           <h5 className="card-title">{product.name}</h5>
+
           <div className="product-price">
-            {product.price_old && (
-              <span className="text-muted text-decoration-line-through me-2">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: currency,
-                }).format(product.price_old * (rates[currency] || 1))}
-              </span>
-            )}
-            <span className="fw-bold text-dark">
-              {formattedPrice}
-            </span>
+            <span className="fw-bold text-dark">{formattedPrice}</span>
           </div>
+
           <div className="product-rating">
             <i className="fas fa-star text-warning"></i>
+
             <i className="fas fa-star text-warning"></i>
+
             <i className="fas fa-star text-warning"></i>
+
             <i className="fas fa-star text-warning"></i>
+
             <i className="far fa-star text-warning"></i>
           </div>
         </div>
@@ -87,7 +90,7 @@ export default function NewArrivals({ currency, rates }) {
         setLoading(true);
         const data = await fetchAllProducts();
         // Take a subset of products for "new arrivals"
-        setProducts(data.slice(0, 4)); 
+        setProducts(data.slice(0, 4));
       } catch (err) {
         setError(err.message);
       } finally {

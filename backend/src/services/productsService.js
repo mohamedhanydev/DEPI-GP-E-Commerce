@@ -1,10 +1,4 @@
-class ServiceError extends Error {
-  constructor(message, status = 500) {
-    super(message);
-    this.name = "ServiceError";
-    this.status = status;
-  }
-}
+const ServiceError = require("../errors/ServiceError");
 const products = require("../database/products");
 const getAllProducts = async () => {
   try {

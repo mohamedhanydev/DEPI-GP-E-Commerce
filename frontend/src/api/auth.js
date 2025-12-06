@@ -1,45 +1,45 @@
-// frontend/src/api/auth.js
-
-const API_BASE_URL = "http://localhost:3600/api";
+import api from "./api";
 
 export const registerUser = async (userData) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/users/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to register user");
-    }
-    const data = await response.json();
-    return data.data;
+    const response = await api.post("/auth/register", userData);
+    return response.data;
   } catch (error) {
-    console.error("Error registering user:", error);
-    throw error;
+    console.error("Error registering user:", error.response ? error.response.data : error.message);
+    throw error.response ? new Error(error.response.data.message) : error;
   }
 };
 
 export const loginUser = async (credentials) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to login user");
+    const response = await api.post("/auth/login", credentials);
+    if (response.data.credentials.token) {
+      localStorage.setItem("token", response.data.credentials.token);
     }
-    const data = await response.json();
-    return data.data;
+    return response.data;
   } catch (error) {
-    console.error("Error logging in user:", error);
-    throw error;
+    console.error("Error logging in user:", error.response ? error.response.data : error.message);
+    throw error.response ? new Error(error.response.data.message) : error;
+  }
+};
+
+
+export const getToken = () => {
+  return localStorage.getItem("token");
+};
+
+export const logoutUser = () => {
+  localStorage.removeItem("token");
+};
+
+export const getCurrentUser = () => {
+  const token = getToken();
+  if (!token) return null;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return { id: payload.id, role: payload.role };
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
   }
 };

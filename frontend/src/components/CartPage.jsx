@@ -34,8 +34,9 @@ const CartPage = () => {
 
   // احسب التوتال
   const calculateTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
+    return (cartItems || []).reduce(
+      (total, item) =>
+        total + (item?.product?.price || item.price) * item.quantity,
       0
     );
   };
@@ -58,48 +59,58 @@ const CartPage = () => {
         </thead>
 
         <tbody>
-          {cartItems.length === 0 ? (
+          {(cartItems || []).length === 0 ? (
             <tr>
               <td colSpan="6" className="py-5">
                 🛒 Your cart is empty
               </td>
             </tr>
           ) : (
-            cartItems.map((item) => (
-              <tr key={item.id}>
+            (cartItems || []).map((item) => (
+              <tr key={item?.product?._id || item._id}>
                 <td>
                   <img
-                    src={item.imageUrl}
+                    src={item?.product?.imageUrl || item.imageUrl}
                     width="70"
                     className="rounded"
-                    alt=""
+                    alt={item?.product?.name || item.name}
                   />
                 </td>
 
-                <td>{item.name}</td>
-                <td>{formatPrice(item.price)}</td>
+                <td>{item?.product?.name || item.name}</td>
+                <td>{formatPrice(item?.product?.price || item?.price)}</td>
 
                 <td>
                   <button
                     className="btn btn-sm btn-outline-secondary me-2"
-                    onClick={() => decreaseQuantity(item.id)}
+                    onClick={() =>
+                      decreaseQuantity(item?.product?._id || item._id)
+                    }
                   >
                     −
                   </button>
                   {item.quantity}
                   <button
                     className="btn btn-sm btn-outline-secondary ms-2"
-                    onClick={() => increaseQuantity(item.id)}
+                    onClick={() =>
+                      increaseQuantity(item?.product?._id || item._id)
+                    }
                   >
                     +
                   </button>
                 </td>
 
-                <td>{formatPrice(item.price * item.quantity)}</td>
+                <td>
+                  {formatPrice(
+                    (item?.product?.price || item.price) * item.quantity
+                  )}
+                </td>
 
                 <td>
                   <button
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() =>
+                      removeFromCart(item?.product?._id || item._id)
+                    }
                     className="btn text-danger"
                   >
                     <i className="fa fa-trash"></i>
@@ -110,8 +121,6 @@ const CartPage = () => {
           )}
         </tbody>
       </table>
-
-      {/* أزرار تحت الجدول */}
       <div className="d-flex justify-content-between mb-4">
         <a href="/shop" className="btn btn-secondary">
           Continue Shopping
@@ -124,10 +133,7 @@ const CartPage = () => {
           </button>
         </div>
       </div>
-
-      {/* 3 كرايت زي اللي في الصورة */}
       <div className="row">
-        {/* Estimate Shipping */}
         <div className="col-md-4">
           <div className="p-3 border rounded">
             <h5>Estimate Shipping And Tax</h5>

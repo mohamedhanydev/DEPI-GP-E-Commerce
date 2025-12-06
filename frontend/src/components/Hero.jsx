@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import banner4 from "../assets/banner__4.png";
-import grid4 from "../assets/grid__4.png";
-import grid6 from "../assets/grid__6.png";
+import banner4 from "/assets/banner__4.png";
+import grid4 from "/assets/grid__4.png";
+import grid6 from "/assets/grid__6.png";
 
 export default function Hero() {
   return (
