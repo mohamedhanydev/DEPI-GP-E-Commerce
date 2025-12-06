@@ -35,7 +35,8 @@ const CartPage = () => {
   // احسب التوتال
   const calculateTotal = () => {
     return (cartItems || []).reduce(
-      (total, item) => total + item.product.price * item.quantity,
+      (total, item) =>
+        total + (item?.product?.price || item.price) * item.quantity,
       0
     );
   };
@@ -66,40 +67,50 @@ const CartPage = () => {
             </tr>
           ) : (
             (cartItems || []).map((item) => (
-              <tr key={item.product._id}>
+              <tr key={item?.product?._id || item._id}>
                 <td>
                   <img
-                    src={item.product.imageUrl}
+                    src={item?.product?.imageUrl || item.imageUrl}
                     width="70"
                     className="rounded"
-                    alt={item.product.name}
+                    alt={item?.product?.name || item.name}
                   />
                 </td>
 
-                <td>{item.product.name}</td>
-                <td>{formatPrice(item.product.price)}</td>
+                <td>{item?.product?.name || item.name}</td>
+                <td>{formatPrice(item?.product?.price || item?.price)}</td>
 
                 <td>
                   <button
                     className="btn btn-sm btn-outline-secondary me-2"
-                    onClick={() => decreaseQuantity(item.product._id)}
+                    onClick={() =>
+                      decreaseQuantity(item?.product?._id || item._id)
+                    }
                   >
                     −
                   </button>
                   {item.quantity}
                   <button
                     className="btn btn-sm btn-outline-secondary ms-2"
-                    onClick={() => increaseQuantity(item.product._id)}
+                    onClick={() =>
+                      increaseQuantity(item?.product?._id || item._id)
+                    }
                   >
                     +
                   </button>
                 </td>
 
-                <td>{formatPrice(item.product.price * item.quantity)}</td>
+                <td>
+                  {formatPrice(
+                    (item?.product?.price || item.price) * item.quantity
+                  )}
+                </td>
 
                 <td>
                   <button
-                    onClick={() => removeFromCart(item.product._id)}
+                    onClick={() =>
+                      removeFromCart(item?.product?._id || item._id)
+                    }
                     className="btn text-danger"
                   >
                     <i className="fa fa-trash"></i>

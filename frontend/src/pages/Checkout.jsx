@@ -251,13 +251,19 @@ export default function Checkout() {
 
               {cartItems.map((item) => (
                 <div
-                  key={item.id}
+                  key={item?._id || item.product._id}
                   className="d-flex justify-content-between mb-2"
                 >
                   <span>
-                    {item.name} × {item.quantity}
+                    {item?.name || item.product.name} ×{" "}
+                    {item?.quantity || item.product.quantity}
                   </span>
-                  <span>{formatPrice(item.price * item.quantity)}</span>
+                  <span>
+                    {formatPrice(
+                      (item?.price || item.product.price) *
+                        (item?.quantity || item.product.quantity)
+                    )}
+                  </span>
                 </div>
               ))}
 
