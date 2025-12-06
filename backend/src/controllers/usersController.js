@@ -1,43 +1,27 @@
-const authService = require("../services/authService");
+const userService = require("../services/userService");
 
-const register = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
-    const { username, email, password, role = "user" } = req.body;
-    if (!email || !username || !password)
-      return res
-        .status(400)
-        .json({ message: "missing email or username or password or role" });
-    const registerUser = await authService.register({
-      username,
-      email,
-      password,
-      role,
-    });
-    res.status(200).json({ message: "registeration done!" });
+    const users = await userService.getAllUsers();
+    res.status(200).json({ message: "retrieved users successfully", data: users });
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message });
   }
 };
 
-const login = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email | !password)
-      return res
-        .status(400)
-        .json({ message: "missing email or username or password or role" });
-    const credentials = await authService.login({
-      email,
-      password,
-    });
-    res.status(200).json({ message: "login done!", credentials });
+    const { id } = req.params;
+    const user = await userService.deleteUser(id);
+    res.status(200).json({ message: "deleted user successfully", data: user });
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message });
   }
 };
+
 const profile = async (req, res) => {
   try {
-    const currentUser = await authService.getUserData(req.user.id);
+    const currentUser = await userService.getUserData(req.user.id);
     res
       .status(200)
       .json({ message: "retrieved user successfully", user: currentUser });
@@ -46,7 +30,7 @@ const profile = async (req, res) => {
   }
 };
 module.exports = {
-  register,
-  login,
+  getAllUsers,
+  deleteUser,
   profile,
 };
