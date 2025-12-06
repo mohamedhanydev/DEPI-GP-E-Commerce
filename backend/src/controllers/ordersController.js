@@ -1,6 +1,15 @@
 const orderService = require("../services/orderService");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await orderService.getAllOrders();
+    res.status(200).json({ message: "retrieved orders successfully", data: orders });
+  } catch (error) {
+    res.status(error.status || 500).json({ message: error.message });
+  }
+};
+
 const createOrder = async (req, res) => {
   try {
     const order = await orderService.createOrder(req.body);
@@ -40,7 +49,18 @@ const createOrderFromSession = async (req, res) => {
   }
 };
 
+const getOrderById = async (req, res) => {
+  try {
+    const order = await orderService.getOrderById(req.params.id);
+    res.status(200).json({ message: "retrieved order successfully", data: order });
+  } catch (error) {
+    res.status(error.status || 500).json({ message: error.message });
+  }
+};
+
 module.exports = {
+  getAllOrders,
   createOrder,
   createOrderFromSession,
+  getOrderById,
 };
