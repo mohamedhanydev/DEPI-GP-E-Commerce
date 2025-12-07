@@ -16,7 +16,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/cart", authMiddleware, cartRoute);
 app.use("/api/products", productsRoute);
-app.use("/api/users", usersRoute);
+app.use("/api/users", authMiddleware, usersRoute);
 app.use("/api/stripe", stripeRoute);
 app.use("/api/orders", ordersRoute);
 async function startServer() {
