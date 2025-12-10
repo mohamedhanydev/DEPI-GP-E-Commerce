@@ -181,7 +181,7 @@ export default function BestSelling({ currency, rates }) {
         <div className="tab-content">
           <div className="tab-pane fade show active" id="all" role="tabpanel">
             <div className="row g-4">
-              {filteredProducts.map((product) => (
+              {products.map((product) => (
                 <ProductCard
                   key={product.id || product._id} // Use id or _id
                   product={product}
