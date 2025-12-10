@@ -111,15 +111,6 @@ export default function BestSelling({ currency, rates }) {
     );
   }
 
-  // Filter products based on active tab.
-  // This is a placeholder for actual categorization/filtering from the backend.
-  const filteredProducts = products.filter((product) => {
-    // For now, we'll just display all products regardless of the tab,
-    // as the backend doesn't support category filtering yet.
-    // In a real application, you'd filter by a 'category' or 'gender' property from the backend.
-    return true;
-  });
-
   return (
     <section className="best-selling py-5">
       <div className="container">
