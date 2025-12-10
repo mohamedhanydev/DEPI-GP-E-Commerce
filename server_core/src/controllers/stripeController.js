@@ -1,6 +1,5 @@
 import stripe from "stripe";
 const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
-import orderService from "../services/orderService.js";
 
 export const createCheckoutSession = async (req, res) => {
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -16,7 +15,6 @@ export const createCheckoutSession = async (req, res) => {
       details: "The user is not properly authenticated to perform this action.",
     });
   }
-  console.log("hello");
   const { cartItems, customer } = req.body;
   console.log(cartItems, customer);
   const userId = req.user.id;
@@ -56,4 +54,3 @@ export const createCheckoutSession = async (req, res) => {
       .json({ error: "Failed to create Stripe session", details: error });
   }
 };
-
