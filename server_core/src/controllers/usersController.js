@@ -1,6 +1,6 @@
-const userService = require("../services/userService");
+import * as userService from "../services/userService.js";
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
     res.status(200).json({ message: "retrieved users successfully", data: users });
@@ -9,7 +9,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await userService.deleteUser(id);
@@ -19,7 +19,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const profile = async (req, res) => {
+export const profile = async (req, res) => {
   try {
     const currentUser = await userService.getUserData(req.user.id);
     res
@@ -28,9 +28,4 @@ const profile = async (req, res) => {
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message });
   }
-};
-module.exports = {
-  getAllUsers,
-  deleteUser,
-  profile,
 };

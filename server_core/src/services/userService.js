@@ -1,6 +1,6 @@
-const User = require("../models/User");
+import User from "../models/User.js";
 
-const getAllUsers = async () => {
+export const getAllUsers = async () => {
   try {
     const users = await User.find();
     return users;
@@ -9,7 +9,7 @@ const getAllUsers = async () => {
   }
 };
 
-const deleteUser = async (id) => {
+export const deleteUser = async (id) => {
   try {
     const user = await User.findByIdAndDelete(id);
     return user;
@@ -18,17 +18,11 @@ const deleteUser = async (id) => {
   }
 };
 
-const getUserData = async (id) => {
+export const getUserData = async (id) => {
   try {
     const user = await User.findById(id);
     return user;
   } catch (error) {
     throw error;
   }
-};
-
-module.exports = {
-  getAllUsers,
-  deleteUser,
-  getUserData,
 };

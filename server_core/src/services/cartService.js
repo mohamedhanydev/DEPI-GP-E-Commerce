@@ -1,9 +1,9 @@
-const ServiceError = require("../errors/ServiceError");
-const Cart = require("../models/Cart");
-const Product = require("../models/Product");
-const mongoose = require("mongoose");
+import ServiceError from "../errors/ServiceError.js";
+import Cart from "../models/Cart.js";
+import Product from "../models/Product.js";
+import mongoose from "mongoose";
 // 1. Get Logged In User's Cart
-const getAllCartItems = async (userId) => {
+export const getAllCartItems = async (userId) => {
   // Find cart for this user and populate product details (name, img)
   const cart = await Cart.findOne({ user: userId }).populate({
     path: "cartItems.product",
@@ -19,7 +19,7 @@ const getAllCartItems = async (userId) => {
 };
 
 // 2. Add Item to Cart
-const calcTotalCartPrice = (cart) => {
+export const calcTotalCartPrice = (cart) => {
   cart.totalCartPrice = cart.cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
@@ -27,7 +27,7 @@ const calcTotalCartPrice = (cart) => {
   cart.totalPriceAfterDiscount = undefined; // Reset discount
 };
 
-const addItemToCart = async (userId, data) => {
+export const addItemToCart = async (userId, data) => {
   const { productId, quantity } = data;
   const product = await Product.findById(productId);
   if (!product) {
@@ -73,7 +73,7 @@ const addItemToCart = async (userId, data) => {
 };
 
 // 3. Remove Specific Item
-const deleteOneCartItem = async (userId, productId) => {
+export const deleteOneCartItem = async (userId, productId) => {
   const cart = await Cart.findOneAndUpdate(
     { user: userId },
     { $pull: { cartItems: { product: productId } } },
@@ -94,7 +94,7 @@ const deleteOneCartItem = async (userId, productId) => {
 };
 
 // 4. Clear Entire Cart
-const deleteAllCartItems = async (userId) => {
+export const deleteAllCartItems = async (userId) => {
   const cart = await Cart.findOne({ user: userId });
 
   if (!cart) return null;
@@ -107,7 +107,7 @@ const deleteAllCartItems = async (userId) => {
 };
 
 // 5. Increase Item Quantity
-const increaseItemInCart = async (userId, productId) => {
+export const increaseItemInCart = async (userId, productId) => {
   const cart = await Cart.findOne({ user: userId });
   if (!cart) {
     throw new ServiceError("Cart not found", 404);
@@ -136,7 +136,7 @@ const increaseItemInCart = async (userId, productId) => {
 
 // 6. Decrease Item Quantity
 // 6. Decrease Item Quantity
-const decreaseItemInCart = async (userId, productId) => {
+export const decreaseItemInCart = async (userId, productId) => {
   let cart = await Cart.findOne({ user: userId });
   if (!cart) {
     throw new ServiceError("Cart not found", 404);
@@ -168,11 +168,3 @@ const decreaseItemInCart = async (userId, productId) => {
   return cart;
 };
 
-module.exports = {
-  getAllCartItems,
-  addItemToCart,
-  deleteOneCartItem,
-  deleteAllCartItems,
-  increaseItemInCart,
-  decreaseItemInCart,
-};

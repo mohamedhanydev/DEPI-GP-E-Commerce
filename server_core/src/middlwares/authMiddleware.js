@@ -1,4 +1,4 @@
-const jwtService = require("../services/jwtService");
+import jwtService from "../services/jwtService.js";
 
 const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -27,4 +27,4 @@ const auth = async (req, res, next) => {
     });
   }
 };
-module.exports = auth;
+export default auth;

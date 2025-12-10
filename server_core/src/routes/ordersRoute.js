@@ -1,16 +1,21 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const ordersController = require("../controllers/ordersController");
-const authMiddleware = require("../middlwares/authMiddleware");
-const adminAuth = require("../middlwares/adminAuthMiddleware");
+import {
+  getAllOrders,
+  getOrderById,
+  createOrder,
+  createOrderFromSession,
+} from "../controllers/ordersController.js";
+import authMiddleware from "../middlwares/authMiddleware.js";
+import adminAuth from "../middlwares/adminAuthMiddleware.js";
 
-router.get("/", authMiddleware, adminAuth, ordersController.getAllOrders);
-router.get("/:id", authMiddleware, adminAuth, ordersController.getOrderById);
-router.post("/", authMiddleware, ordersController.createOrder);
+router.get("/", authMiddleware, adminAuth, getAllOrders);
+router.get("/:id", authMiddleware, adminAuth, getOrderById);
+router.post("/", authMiddleware, createOrder);
 router.post(
   "/create-order-from-session",
   authMiddleware,
-  ordersController.createOrderFromSession
+  createOrderFromSession
 );
 
-module.exports = router;
+export default router;

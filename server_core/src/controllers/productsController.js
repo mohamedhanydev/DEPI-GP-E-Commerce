@@ -1,7 +1,7 @@
-const productsService = require("../services/productsService");
-const { createProductSchema, updateProductSchema } = require("../validators/productValidator");
+import * as productsService from "../services/productsService.js";
+import { createProductSchema, updateProductSchema } from "../validators/productValidator.js";
 
-const getAllProducts = async (req, res) => {
+export const getAllProducts = async (req, res) => {
   try {
     const allProducts = await productsService.getAllProducts();
     res.status(200).send({ status: "OK", data: allProducts });
@@ -12,7 +12,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-const getOneProduct = async (req, res) => {
+export const getOneProduct = async (req, res) => {
   try {
     const oneProduct = await productsService.getOneProduct(req.params.id);
     res.status(200).send({ status: "OK", data: oneProduct });
@@ -23,7 +23,7 @@ const getOneProduct = async (req, res) => {
   }
 };
 
-const createOneProduct = async (req, res) => {
+export const createOneProduct = async (req, res) => {
   try {
     const { error, value } = createProductSchema.validate(req.body);
     if (error) {
@@ -38,7 +38,7 @@ const createOneProduct = async (req, res) => {
   }
 };
 
-const updateOneProduct = async (req, res) => {
+export const updateOneProduct = async (req, res) => {
   try {
     const { error, value } = updateProductSchema.validate(req.body);
     if (error) {
@@ -56,7 +56,7 @@ const updateOneProduct = async (req, res) => {
   }
 };
 
-const deleteOneProduct = async (req, res) => {
+export const deleteOneProduct = async (req, res) => {
   try {
     const deletedProduct = await productsService.deleteOneProduct(
       req.params.id
@@ -69,10 +69,3 @@ const deleteOneProduct = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllProducts,
-  getOneProduct,
-  createOneProduct,
-  updateOneProduct,
-  deleteOneProduct,
-};

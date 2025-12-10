@@ -1,12 +1,12 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const stripeController = require("../controllers/stripeController");
-const authMiddleware = require("../middlwares/authMiddleware");
+import { createCheckoutSession } from "../controllers/stripeController.js";
+import authMiddleware from "../middlwares/authMiddleware.js";
 
 router.post(
   "/create-checkout-session",
   authMiddleware,
-  stripeController.createCheckoutSession
+  createCheckoutSession
 );
 
-module.exports = router;
+export default router;

@@ -1,14 +1,14 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const {
+import {
   getAllProducts,
   getOneProduct,
   updateOneProduct,
   deleteOneProduct,
   createOneProduct,
-} = require("../controllers/productsController");
-const auth = require("../middlwares/authMiddleware");
-const adminAuth = require("../middlwares/adminAuthMiddleware");
+} from "../controllers/productsController.js";
+import auth from "../middlwares/authMiddleware.js";
+import adminAuth from "../middlwares/adminAuthMiddleware.js";
 
 // retrieve all products (accessible to all, or just authenticated users, for now all)
 router.get("/", getAllProducts);
@@ -20,4 +20,4 @@ router.get("/:id", getOneProduct);
 router.patch("/:id", auth, adminAuth, updateOneProduct);
 // delete one product (admin only)
 router.delete("/:id", auth, adminAuth, deleteOneProduct);
-module.exports = router;
+export default router;

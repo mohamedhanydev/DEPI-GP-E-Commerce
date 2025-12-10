@@ -1,7 +1,7 @@
-const Product = require('../models/Product');
-const ServiceError = require('../errors/ServiceError');
+import Product from '../models/Product.js';
+import ServiceError from '../errors/ServiceError.js';
 
-const getAllProducts = async () => {
+export const getAllProducts = async () => {
     try {
         const allProducts = await Product.find();
         return allProducts;
@@ -10,7 +10,7 @@ const getAllProducts = async () => {
     }
 };
 
-const getOneProduct = async (id) => {
+export const getOneProduct = async (id) => {
     try {
         const oneProduct = await Product.findById(id);
         return oneProduct;
@@ -19,7 +19,7 @@ const getOneProduct = async (id) => {
     }
 };
 
-const createOneProduct = async (data) => {
+export const createOneProduct = async (data) => {
     try {
         const newProduct = new Product(data);
         await newProduct.save();
@@ -29,7 +29,7 @@ const createOneProduct = async (data) => {
     }
 };
 
-const updateOneProduct = async (id, changes) => {
+export const updateOneProduct = async (id, changes) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(id, changes, { new: true });
         return updatedProduct;
@@ -38,19 +38,11 @@ const updateOneProduct = async (id, changes) => {
     }
 };
 
-const deleteOneProduct = async (id) => {
+export const deleteOneProduct = async (id) => {
     try {
         const result = await Product.deleteOne({ _id: id });
         return result.deletedCount;
     } catch (error) {
         throw new ServiceError(error.message, 500);
     }
-};
-
-module.exports = {
-    getAllProducts,
-    getOneProduct,
-    createOneProduct,
-    updateOneProduct,
-    deleteOneProduct,
 };

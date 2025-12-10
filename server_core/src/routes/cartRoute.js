@@ -1,14 +1,21 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const cartController = require("../controllers/cartController");
+import {
+  addItemToCart,
+  getAllCartItems,
+  deleteAllCartItems,
+  deleteOneCartItem,
+  increaseItemInCart,
+  decreaseItemInCart,
+} from "../controllers/cartController.js";
 
 router
   .route("/")
-  .post(cartController.addItemToCart)
-  .get(cartController.getAllCartItems)
-  .delete(cartController.deleteAllCartItems);
+  .post(addItemToCart)
+  .get(getAllCartItems)
+  .delete(deleteAllCartItems);
 
-router.route("/:productId").delete(cartController.deleteOneCartItem);
-router.route("/increase/:productId").put(cartController.increaseItemInCart);
-router.route("/decrease/:productId").delete(cartController.decreaseItemInCart);
-module.exports = router;
+router.route("/:productId").delete(deleteOneCartItem);
+router.route("/increase/:productId").put(increaseItemInCart);
+router.route("/decrease/:productId").delete(decreaseItemInCart);
+export default router;

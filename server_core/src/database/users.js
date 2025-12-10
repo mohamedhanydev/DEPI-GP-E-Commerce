@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const ServiceError = require('../errors/ServiceError');
+import User from '../models/User.js';
+import ServiceError from '../errors/ServiceError.js';
 
-const createUser = async (userData) => {
+export const createUser = async (userData) => {
     try {
         const newUser = new User(userData);
         await newUser.save();
@@ -11,16 +11,11 @@ const createUser = async (userData) => {
     }
 };
 
-const findUserByEmail = async (email) => {
+export const findUserByEmail = async (email) => {
     try {
         const user = await User.findOne({ email });
         return user;
     } catch (error) {
         throw new ServiceError(error.message, 500);
     }
-};
-
-module.exports = {
-    createUser,
-    findUserByEmail,
 };

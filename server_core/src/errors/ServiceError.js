@@ -6,5 +6,5 @@ class ServiceError extends Error {
     }
   }
   
-  module.exports = ServiceError;
+  export default ServiceError;
   

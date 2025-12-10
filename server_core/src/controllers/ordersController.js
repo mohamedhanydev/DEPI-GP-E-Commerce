@@ -1,7 +1,8 @@
-const orderService = require("../services/orderService");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import * as orderService from "../services/orderService.js";
+import stripe from "stripe";
+const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
-const getAllOrders = async (req, res) => {
+export const getAllOrders = async (req, res) => {
   try {
     const orders = await orderService.getAllOrders();
     res.status(200).json({ message: "retrieved orders successfully", data: orders });
@@ -10,7 +11,7 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-const createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
   try {
     const order = await orderService.createOrder(req.body);
     res.status(201).json(order);
@@ -19,10 +20,10 @@ const createOrder = async (req, res) => {
   }
 };
 
-const createOrderFromSession = async (req, res) => {
+export const createOrderFromSession = async (req, res) => {
   try {
     const { sessionId } = req.body;
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+    const session = await stripeClient.checkout.sessions.retrieve(sessionId, {
       expand: ["line_items"],
     });
 
@@ -49,7 +50,7 @@ const createOrderFromSession = async (req, res) => {
   }
 };
 
-const getOrderById = async (req, res) => {
+export const getOrderById = async (req, res) => {
   try {
     const order = await orderService.getOrderById(req.params.id);
     res.status(200).json({ message: "retrieved order successfully", data: order });
@@ -58,9 +59,3 @@ const getOrderById = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllOrders,
-  createOrder,
-  createOrderFromSession,
-  getOrderById,
-};

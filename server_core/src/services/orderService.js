@@ -1,6 +1,6 @@
-const Order = require("../models/Order");
+import Order from "../models/Order.js";
 
-const createOrder = async (data) => {
+export const createOrder = async (data) => {
   const newOrder = new Order(data);
   try {
     const savedOrder = await newOrder.save();
@@ -10,7 +10,7 @@ const createOrder = async (data) => {
   }
 };
 
-const getAllOrders = async () => {
+export const getAllOrders = async () => {
   try {
     const orders = await Order.find()
       .populate("userId", "name email")
@@ -21,7 +21,7 @@ const getAllOrders = async () => {
   }
 };
 
-const getOrderById = async (id) => {
+export const getOrderById = async (id) => {
   try {
     const order = await Order.findById(id)
       .populate("userId", "name email")
@@ -46,5 +46,3 @@ const getOrderById = async (id) => {
     throw err;
   }
 };
-
-module.exports = { createOrder, getAllOrders, getOrderById };

@@ -1,6 +1,6 @@
-const ServiceError = require("../errors/ServiceError");
-const products = require("../database/products");
-const getAllProducts = async () => {
+import ServiceError from "../errors/ServiceError.js";
+import * as products from "../database/products.js";
+export const getAllProducts = async () => {
   try {
     const allProducts = await products.getAllProducts();
     return allProducts;
@@ -8,7 +8,7 @@ const getAllProducts = async () => {
     throw error;
   }
 };
-const getOneProduct = async (id) => {
+export const getOneProduct = async (id) => {
   try {
     const oneProduct = await products.getOneProduct(id);
     if (!oneProduct) {
@@ -19,7 +19,7 @@ const getOneProduct = async (id) => {
     throw error;
   }
 };
-const createOneProduct = async (data) => {
+export const createOneProduct = async (data) => {
   try {
     const newProduct = await products.createOneProduct(data);
     return newProduct;
@@ -27,7 +27,7 @@ const createOneProduct = async (data) => {
     throw error;
   }
 };
-const updateOneProduct = async (id, changes) => {
+export const updateOneProduct = async (id, changes) => {
   try {
     if (!id) {
       throw new ServiceError("Product ID is required for updating.", 400);
@@ -57,7 +57,7 @@ const updateOneProduct = async (id, changes) => {
     throw error;
   }
 };
-const deleteOneProduct = async (id) => {
+export const deleteOneProduct = async (id) => {
   try {
     const deletedProduct = await products.deleteOneProduct(id);
     if (deletedProduct === 0) {
@@ -71,11 +71,4 @@ const deleteOneProduct = async (id) => {
   } catch (error) {
     throw error;
   }
-};
-module.exports = {
-  getAllProducts,
-  getOneProduct,
-  createOneProduct,
-  updateOneProduct,
-  deleteOneProduct,
 };

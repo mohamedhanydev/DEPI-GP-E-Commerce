@@ -1,7 +1,8 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const orderService = require("../services/orderService");
+import stripe from "stripe";
+const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
+import orderService from "../services/orderService.js";
 
-const createCheckoutSession = async (req, res) => {
+export const createCheckoutSession = async (req, res) => {
   if (!process.env.STRIPE_SECRET_KEY) {
     return res.status(500).json({
       error: "Stripe secret key not configured.",
@@ -34,7 +35,7 @@ const createCheckoutSession = async (req, res) => {
   });
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripeClient.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items,
       mode: "payment",
@@ -56,6 +57,3 @@ const createCheckoutSession = async (req, res) => {
   }
 };
 
-module.exports = {
-  createCheckoutSession,
-};

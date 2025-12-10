@@ -1,8 +1,8 @@
-const ServiceError = require("../errors/ServiceError");
-const User = require("../models/User");
-const { generateToken } = require("./jwtService");
-const { hashPassword, comparePassword } = require("./hashService");
-const register = async (userData) => {
+import ServiceError from "../errors/ServiceError.js";
+import User from "../models/User.js";
+import { generateToken } from "./jwtService.js";
+import { hashPassword, comparePassword } from "./hashService.js";
+export const register = async (userData) => {
   try {
     const { username, email, password, role } = userData;
     const existingEmail = await User.findOne({ email });
@@ -24,7 +24,7 @@ const register = async (userData) => {
   }
 };
 
-const login = async (userData) => {
+export const login = async (userData) => {
   try {
     const { email, password } = userData;
     const existingUser = await User.findOne({ email });
@@ -50,7 +50,3 @@ const login = async (userData) => {
   }
 };
 
-module.exports = {
-  register,
-  login,
-};

@@ -1,16 +1,17 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import connectDB from "./src/database/connect.js";
+import productsRoute from "./src/routes/productsRoute.js";
+import authRoute from "./src/routes/authRoute.js";
+import cartRoute from "./src/routes/cartRoute.js";
+import usersRoute from "./src/routes/usersRoute.js";
+import stripeRoute from "./src/routes/stripeRoute.js";
+import ordersRoute from "./src/routes/ordersRoute.js";
+import authMiddleware from "./src/middlwares/authMiddleware.js";
+
 const app = express();
-const connectDB = require("./src/database/connect");
-const productsRoute = require("./src/routes/productsRoute");
-const authRoute = require("./src/routes/authRoute");
-const cartRoute = require("./src/routes/cartRoute");
-const usersRoute = require("./src/routes/usersRoute");
-const stripeRoute = require("./src/routes/stripeRoute");
-const ordersRoute = require("./src/routes/ordersRoute");
-const authMiddleware = require("./src/middlwares/authMiddleware");
-// const PORT = process.env.PORT || 3700;
+const PORT = process.env.PORT || 3700;
 app.use(
   cors({
     origin: "*",
@@ -37,13 +38,13 @@ async function startServer() {
   try {
     await connectDB();
 
-    // app.listen(PORT, () => {
-    //   console.log(`Started listening to port: ${PORT}`);
-    // });
+    app.listen(PORT, () => {
+      console.log(`Started listening to port: ${PORT}`);
+    });
   } catch (error) {
     process.exit(1);
   }
 }
 
 startServer();
-module.exports = app;
+export default app;

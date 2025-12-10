@@ -1,5 +1,5 @@
-const cartService = require("../services/cartService");
-const getAllCartItems = async (req, res) => {
+import * as cartService from "../services/cartService.js";
+export const getAllCartItems = async (req, res) => {
   try {
     const allProducts = await cartService.getAllCartItems(req.user.id);
     res.status(200).send({ status: "OK", data: allProducts });
@@ -9,7 +9,7 @@ const getAllCartItems = async (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const addItemToCart = async (req, res) => {
+export const addItemToCart = async (req, res) => {
   try {
     const data = req.body;
     console.log(data);
@@ -22,7 +22,7 @@ const addItemToCart = async (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const deleteOneCartItem = async (req, res) => {
+export const deleteOneCartItem = async (req, res) => {
   try {
     const deletedProduct = await cartService.deleteOneCartItem(
       req.user.id,
@@ -35,7 +35,7 @@ const deleteOneCartItem = async (req, res) => {
       .send({ status: "FAILED", message: error.message });
   }
 };
-const deleteAllCartItems = async (req, res) => {
+export const deleteAllCartItems = async (req, res) => {
   try {
     await cartService.deleteAllCartItems(req.user.id);
     res.status(200).send({ status: "OK", message: "deleted all cart items" });
@@ -46,7 +46,7 @@ const deleteAllCartItems = async (req, res) => {
   }
 };
 
-const increaseItemInCart = async (req, res) => {
+export const increaseItemInCart = async (req, res) => {
   try {
     const cart = await cartService.increaseItemInCart(
       req.user.id,
@@ -60,7 +60,7 @@ const increaseItemInCart = async (req, res) => {
   }
 };
 
-const decreaseItemInCart = async (req, res) => {
+export const decreaseItemInCart = async (req, res) => {
   try {
     const cart = await cartService.decreaseItemInCart(
       req.user.id,
@@ -74,11 +74,3 @@ const decreaseItemInCart = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllCartItems,
-  addItemToCart,
-  deleteOneCartItem,
-  deleteAllCartItems,
-  increaseItemInCart,
-  decreaseItemInCart,
-};
