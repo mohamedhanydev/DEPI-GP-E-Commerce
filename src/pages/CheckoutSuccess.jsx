@@ -16,7 +16,9 @@ export default function CheckoutSuccess() {
         try {
           const token = localStorage.getItem("token");
           const response = await fetch(
-            "http://localhost:3700/api/orders/create-order-from-session",
+            `${
+              import.meta.env.VITE_API_URL
+            }/api/orders/create-order-from-session`,
             {
               method: "POST",
               headers: {

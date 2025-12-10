@@ -87,7 +87,9 @@ export default function Checkout() {
           const stripe = await stripePromise;
           const token = localStorage.getItem("token");
           const response = await fetch(
-            "http://localhost:3700/api/stripe/create-checkout-session",
+            `${
+              import.meta.env.VITE_API_URL
+            }/api/stripe/create-checkout-session`,
             {
               method: "POST",
               headers: {
