@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/about-us.css';
+import React from "react";
+import "../styles/about-us.css";
 
 const AboutUs = () => {
   return (
@@ -48,17 +48,26 @@ const AboutUs = () => {
           <h2>Our Story</h2>
           <div className="story-content">
             <p>
-              Founded in 2025 by a small team of tech enthusiasts in Cairo, began with a simple idea: to make cutting-edge technology accessible to everyone. We noticed a gap in the market for quality, curated electronics and decided to fill it with a personalized shopping experience.
+              Founded in 2025 by a small team of tech enthusiasts in Cairo,
+              began with a simple idea: to make cutting-edge technology
+              accessible to everyone. We noticed a gap in the market for
+              quality, curated electronics and decided to fill it with a
+              personalized shopping experience.
             </p>
             <p>
-              What started in a small garage has grown into a trusted online retailer, but our commitment to our founding principles—quality, transparency, and customer focus—has remained the same.
+              What started in a small garage has grown into a trusted online
+              retailer, but our commitment to our founding principles—quality,
+              transparency, and customer focus—has remained the same.
             </p>
             <div className="story-image-container">
               <img
-                src="/src/assets/m.jpg"
+                src="/assets/m.jpg"
                 alt="Modern Office Space"
                 className="story-image"
-                onError={(e) => e.target.src = 'https://via.placeholder.com/800x400?text=Modern+Office+Space'}
+                onError={(e) =>
+                  (e.target.src =
+                    "https://via.placeholder.com/800x400?text=Modern+Office+Space")
+                }
               />
             </div>
           </div>
@@ -67,22 +76,30 @@ const AboutUs = () => {
         {/* Timeline Section */}
         <section className="timeline-section py-5 bg-white">
           <div className="container">
-            <h2 className="text-center mb-5 fw-bold text-primary">Our Journey</h2>
+            <h2 className="text-center mb-5 fw-bold text-primary">
+              Our Journey
+            </h2>
             <div className="timeline">
               <div className="timeline-item left">
                 <div className="timeline-content">
                   <div className="timeline-image-container">
                     <img
-                      src="/src/assets/p1.jpg"
+                      src="/assets/p1.jpg"
                       alt="Founded in Cairo"
                       className="timeline-image"
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/200x150?text=2025'}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/200x150?text=2025")
+                      }
                     />
                   </div>
                   <div className="timeline-text">
                     <div className="timeline-year">2025</div>
                     <h4>Founded in Cairo</h4>
-                    <p>Started with a vision to make cutting-edge technology accessible to everyone.</p>
+                    <p>
+                      Started with a vision to make cutting-edge technology
+                      accessible to everyone.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -90,16 +107,22 @@ const AboutUs = () => {
                 <div className="timeline-content">
                   <div className="timeline-image-container">
                     <img
-                      src="/src/assets/p2.jpg"
+                      src="/assets/p2.jpg"
                       alt="First 1000 Customers"
                       className="timeline-image"
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/200x150?text=2026'}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/200x150?text=2026")
+                      }
                     />
                   </div>
                   <div className="timeline-text">
                     <div className="timeline-year">2026</div>
                     <h4>First 1000 Customers</h4>
-                    <p>Achieved our first major milestone with growing customer base.</p>
+                    <p>
+                      Achieved our first major milestone with growing customer
+                      base.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -107,16 +130,22 @@ const AboutUs = () => {
                 <div className="timeline-content">
                   <div className="timeline-image-container">
                     <img
-                      src="/src/assets/p3.jpg"
+                      src="/assets/p3.jpg"
                       alt="Product Expansion"
                       className="timeline-image"
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/200x150?text=2027'}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/200x150?text=2027")
+                      }
                     />
                   </div>
                   <div className="timeline-text">
                     <div className="timeline-year">2027</div>
                     <h4>Product Expansion</h4>
-                    <p>Expanded our curated collection to serve more customer needs.</p>
+                    <p>
+                      Expanded our curated collection to serve more customer
+                      needs.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -124,16 +153,22 @@ const AboutUs = () => {
                 <div className="timeline-content">
                   <div className="timeline-image-container">
                     <img
-                      src="/src/assets/p4.jpg"
+                      src="/assets/p4.jpg"
                       alt="Excellence Award"
                       className="timeline-image"
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/200x150?text=2028'}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/200x150?text=2028")
+                      }
                     />
                   </div>
                   <div className="timeline-text">
                     <div className="timeline-year">2028</div>
                     <h4>Excellence Award</h4>
-                    <p>Recognized for outstanding customer service and product quality.</p>
+                    <p>
+                      Recognized for outstanding customer service and product
+                      quality.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -146,10 +181,13 @@ const AboutUs = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-6">
-                <h2 className="mb-4 fw-bold text-primary">Our Story in Motion</h2>
+                <h2 className="mb-4 fw-bold text-primary">
+                  Our Story in Motion
+                </h2>
                 <p className="mb-4">
-                  Watch our journey from a small garage startup to a trusted e-commerce platform.
-                  See the passion and dedication that drives everything we do.
+                  Watch our journey from a small garage startup to a trusted
+                  e-commerce platform. See the passion and dedication that
+                  drives everything we do.
                 </p>
                 <div className="video-stats">
                   <div className="video-stat">
@@ -166,10 +204,13 @@ const AboutUs = () => {
                 <div className="video-container">
                   <div className="video-placeholder">
                     <img
-                      src="/src/assets/m.jpg"
+                      src="/assets/m.jpg"
                       alt="Company video thumbnail"
                       className="video-thumbnail"
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/500x280?text=Company+Video'}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/500x280?text=Company+Video")
+                      }
                     />
                     <div className="play-button">
                       <i className="fas fa-play"></i>
@@ -189,14 +230,16 @@ const AboutUs = () => {
         <section className="mission-section fade-in">
           <h2>Our Mission</h2>
           <p>
-            Our mission is to empower our customers with the best tools and gadgets available, simplifying their lives and enhancing their creativity. We strive to be more than just a shop; we aim to be a curator and guide in the fast-paced world of technology.
+            Our mission is to empower our customers with the best tools and
+            gadgets available, simplifying their lives and enhancing their
+            creativity. We strive to be more than just a shop; we aim to be a
+            curator and guide in the fast-paced world of technology.
           </p>
 
           <div className="mission-quote">
             <p>
-              "To deliver innovation and delight our customers with
-              exceptional quality and unforgettable service, one product at a
-              time."
+              "To deliver innovation and delight our customers with exceptional
+              quality and unforgettable service, one product at a time."
             </p>
             <div className="quote-author">— The Founders of Minmalist</div>
           </div>
@@ -237,7 +280,9 @@ const AboutUs = () => {
         {/* Sustainability Section */}
         <section className="sustainability-section py-5 bg-white">
           <div className="container">
-            <h2 className="text-center mb-5 fw-bold text-primary">Our Commitment to Sustainability</h2>
+            <h2 className="text-center mb-5 fw-bold text-primary">
+              Our Commitment to Sustainability
+            </h2>
             <div className="row">
               <div className="col-lg-4 mb-4">
                 <div className="sustainability-card">
@@ -245,7 +290,10 @@ const AboutUs = () => {
                     <i className="fas fa-recycle"></i>
                   </div>
                   <h4>Eco-Friendly Packaging</h4>
-                  <p>All our shipments use 100% recyclable materials and minimal plastic packaging.</p>
+                  <p>
+                    All our shipments use 100% recyclable materials and minimal
+                    plastic packaging.
+                  </p>
                 </div>
               </div>
               <div className="col-lg-4 mb-4">
@@ -254,7 +302,10 @@ const AboutUs = () => {
                     <i className="fas fa-leaf"></i>
                   </div>
                   <h4>Carbon Neutral Shipping</h4>
-                  <p>We offset 100% of our shipping emissions through certified carbon credit programs.</p>
+                  <p>
+                    We offset 100% of our shipping emissions through certified
+                    carbon credit programs.
+                  </p>
                 </div>
               </div>
               <div className="col-lg-4 mb-4">
@@ -263,7 +314,10 @@ const AboutUs = () => {
                     <i className="fas fa-seedling"></i>
                   </div>
                   <h4>Ethical Sourcing</h4>
-                  <p>We partner with suppliers who share our commitment to ethical manufacturing practices.</p>
+                  <p>
+                    We partner with suppliers who share our commitment to
+                    ethical manufacturing practices.
+                  </p>
                 </div>
               </div>
             </div>
@@ -301,7 +355,7 @@ const AboutUs = () => {
         {/* CTA Section */}
         <section className="cta-section fade-in">
           <h3>Ready to Join Our Community?</h3>
-            <p>
+          <p>
             Explore our curated selection and become part of the Minimalist
             family!
           </p>

@@ -10,25 +10,40 @@ const usersRoute = require("./src/routes/usersRoute");
 const stripeRoute = require("./src/routes/stripeRoute");
 const ordersRoute = require("./src/routes/ordersRoute");
 const authMiddleware = require("./src/middlwares/authMiddleware");
-const PORT = process.env.PORT || 3700;
-app.use(cors());
+// const PORT = process.env.PORT || 3700;
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Accept",
+      "X-Requested-With",
+    ],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
+// app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/cart", authMiddleware, cartRoute);
 app.use("/api/products", productsRoute);
-app.use("/api/users", usersRoute);
+app.use("/api/users", authMiddleware, usersRoute);
 app.use("/api/stripe", stripeRoute);
 app.use("/api/orders", ordersRoute);
 async function startServer() {
   try {
     await connectDB();
 
-    app.listen(PORT, () => {
-      console.log(`Started listening to port: ${PORT}`);
-    });
+    // app.listen(PORT, () => {
+    //   console.log(`Started listening to port: ${PORT}`);
+    // });
   } catch (error) {
     process.exit(1);
   }
 }
 
 startServer();
+module.exports = app;

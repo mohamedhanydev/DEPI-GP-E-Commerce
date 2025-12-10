@@ -145,7 +145,7 @@ export default function NewArrivals({ currency, rates }) {
         </div>
         <a
           className="btn btn-primary d-block mx-auto"
-          href="shop.html" // Changed to shop.html
+          href="/Shop" // Changed to shop.html
           role="button"
           style={{ width: "fit-content" }}
         >
