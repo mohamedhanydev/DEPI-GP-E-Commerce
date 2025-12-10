@@ -1,4 +1,4 @@
-import jwtService from "../services/jwtService.js";
+import { verifyToken } from "../services/jwtService.js";
 
 const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
       .status(401)
       .json({ message: "Access Denied: No Token provided" });
   try {
-    const decodedPayload = await jwtService.verifyToken(token);
+    const decodedPayload = await verifyToken(token);
     req.user = decodedPayload;
     next();
   } catch (error) {
