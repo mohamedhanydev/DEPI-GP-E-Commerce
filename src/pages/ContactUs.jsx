@@ -41,18 +41,8 @@ const ContactUs = () => {
 
     // --- SIMULATED FORM SUBMISSION ---
     try {
-      // In a real application, you would replace this with an API call:
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
-      // if (!response.ok) throw new Error('Submission failed');
-
-      // Simulate successful API response delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      console.log("Form Data Sent:", formData);
       setStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" }); // Clear form
     } catch (error) {

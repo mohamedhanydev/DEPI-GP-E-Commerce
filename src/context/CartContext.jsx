@@ -67,16 +67,13 @@ export const CartProvider = ({ children }) => {
   }, [token]);
 
   const addToCart = async (product) => {
-    console.log(product);
     if (token) {
       const productId = product._id;
       if (!productId) {
         console.error("Product has no ID", product);
         return;
       }
-      console.log(productId);
       const updatedCart = await addItemToCart(productId, 1);
-      console.log(updatedCart);
       setcartItems(updatedCart.cartItems);
       setCartItemCount(
         updatedCart.cartItems.reduce((total, item) => total + item.quantity, 0)

@@ -16,7 +16,6 @@ export const createCheckoutSession = async (req, res) => {
     });
   }
   const { cartItems, customer } = req.body;
-  console.log(cartItems, customer);
   const userId = req.user.id;
 
   const line_items = cartItems.map((item) => {

@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 const ProductCard = ({ product, addToCart, currency, rates }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
-    console.log(product);
     addToCart(product);
     toast.success("Product added to cart!");
   };
@@ -78,7 +77,6 @@ const ShopPage = () => {
       try {
         setLoading(true);
         const data = await fetchAllProducts();
-        console.log(data);
         setProducts(data);
       } catch (err) {
         setError(err.message);

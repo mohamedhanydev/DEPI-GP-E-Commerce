@@ -25,7 +25,6 @@ const ProductCard = ({ product, addToCart, currency, rates }) => {
     style: "currency",
     currency: currency,
   }).format(convertedPrice);
-  console.log(product);
   return (
     <div className="col-lg-3 col-md-6 col-sm-6">
       <div className="product-card card border-0 rounded-0">
